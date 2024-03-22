@@ -1,0 +1,202 @@
+{
+    "connectorName": "Twilio",
+    "endpoints": [
+        {
+            "endpointId": "368d7923-394a-42d8-b2d3-a939a9828da3",
+            "endpointName": "Get Accounts",
+            "connectorName": "Twilio",
+            "description": "",
+            "endpointUri": "https://api.twilio.com/{version}/Accounts.json",
+            "httpRequestType": "GET",
+            "pagingEnabled": true,
+            "pagingType": "RELATIVE_PATH",
+            "endpointSchema": "{\"schema\":{\"accounts\":{\"type\":\"structarray\",\"objectcontents\":{\"sid\":{\"size\":2000,\"type\":\"VARCHAR\"},\"uri\":{\"size\":2000,\"type\":\"VARCHAR\"},\"type\":{\"size\":2000,\"type\":\"VARCHAR\"},\"status\":{\"size\":2000,\"type\":\"VARCHAR\"},\"auth_token\":{\"size\":2000,\"type\":\"VARCHAR\"},\"date_created\":{\"size\":2000,\"type\":\"VARCHAR\"},\"date_updated\":{\"size\":2000,\"type\":\"VARCHAR\"},\"friendly_name\":{\"size\":2000,\"type\":\"VARCHAR\"},\"subresource_uris\":{\"type\":\"struct\",\"objectcontents\":{\"sip\":{\"size\":2000,\"type\":\"VARCHAR\"},\"keys\":{\"size\":2000,\"type\":\"VARCHAR\"},\"calls\":{\"size\":2000,\"type\":\"VARCHAR\"},\"usage\":{\"size\":2000,\"type\":\"VARCHAR\"},\"queues\":{\"size\":2000,\"type\":\"VARCHAR\"},\"balance\":{\"size\":2000,\"type\":\"VARCHAR\"},\"messages\":{\"size\":2000,\"type\":\"VARCHAR\"},\"addresses\":{\"size\":2000,\"type\":\"VARCHAR\"},\"recordings\":{\"size\":2000,\"type\":\"VARCHAR\"},\"conferences\":{\"size\":2000,\"type\":\"VARCHAR\"},\"short_codes\":{\"size\":2000,\"type\":\"VARCHAR\"},\"applications\":{\"size\":2000,\"type\":\"VARCHAR\"},\"connect_apps\":{\"size\":2000,\"type\":\"VARCHAR\"},\"signing_keys\":{\"size\":2000,\"type\":\"VARCHAR\"},\"notifications\":{\"size\":2000,\"type\":\"VARCHAR\"},\"transcriptions\":{\"size\":2000,\"type\":\"VARCHAR\"},\"outgoing_caller_ids\":{\"size\":2000,\"type\":\"VARCHAR\"},\"incoming_phone_numbers\":{\"size\":2000,\"type\":\"VARCHAR\"},\"authorized_connect_apps\":{\"size\":2000,\"type\":\"VARCHAR\"},\"available_phone_numbers\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"owner_account_sid\":{\"size\":2000,\"type\":\"VARCHAR\"}}}},\"repeatElement\":\"accounts\"}",
+            "schemaType": "UNFLATTENED_REPEAT_ELEMENT",
+            "authEnabled": true,
+            "authType": "Basic Auth",
+            "authScheme": "Basic",
+            "authParameterType": "",
+            "pagingSizeParameter": "page_size",
+            "pagingSize": "50",
+            "nextAbsoluteUriDataKey": "next_page_uri",
+            "baseUriDataKey": "uri",
+            "pagingOffsetParameter": null,
+            "pagingTotalItemsParameter": null,
+            "nextCursorKey": null,
+            "nextCursorParameter": null,
+            "pageNumberParameter": null,
+            "lastPageKey": null,
+            "params": [
+                {
+                    "name": "version",
+                    "type": "URI",
+                    "constant": "false",
+                    "value": "2010-04-01",
+                    "sensitiveData": "false"
+                }
+            ]
+        },
+        {
+            "endpointId": "3c7db63d-b4a1-49f2-bbbc-2b6cf9678bf9",
+            "endpointName": "Get Usage Records",
+            "connectorName": "Twilio",
+            "description": "",
+            "endpointUri": "https://api.twilio.com/{version}/Accounts/{AccountSid}/Usage/Records.json",
+            "httpRequestType": "GET",
+            "pagingEnabled": true,
+            "pagingType": "RELATIVE_PATH",
+            "endpointSchema": "{\"schema\":{\"usage_records\":{\"type\":\"structarray\",\"objectcontents\":{\"uri\":{\"size\":2000,\"type\":\"VARCHAR\"},\"as_of\":{\"type\":\"TIMESTAMP\"},\"count\":{\"size\":2000,\"type\":\"VARCHAR\"},\"price\":{\"size\":2000,\"type\":\"VARCHAR\"},\"usage\":{\"size\":2000,\"type\":\"VARCHAR\"},\"category\":{\"size\":2000,\"type\":\"VARCHAR\"},\"end_date\":{\"type\":\"TIMESTAMP\"},\"count_unit\":{\"size\":2000,\"type\":\"VARCHAR\"},\"price_unit\":{\"size\":2000,\"type\":\"VARCHAR\"},\"start_date\":{\"type\":\"TIMESTAMP\"},\"usage_unit\":{\"size\":2000,\"type\":\"VARCHAR\"},\"account_sid\":{\"size\":2000,\"type\":\"VARCHAR\"},\"api_version\":{\"size\":2000,\"type\":\"VARCHAR\"},\"description\":{\"size\":2000,\"type\":\"VARCHAR\"},\"subresource_uris\":{\"type\":\"struct\",\"objectcontents\":{\"daily\":{\"size\":2000,\"type\":\"VARCHAR\"},\"today\":{\"size\":2000,\"type\":\"VARCHAR\"},\"yearly\":{\"size\":2000,\"type\":\"VARCHAR\"},\"monthly\":{\"size\":2000,\"type\":\"VARCHAR\"},\"all_time\":{\"size\":2000,\"type\":\"VARCHAR\"},\"yesterday\":{\"size\":2000,\"type\":\"VARCHAR\"},\"last_month\":{\"size\":2000,\"type\":\"VARCHAR\"},\"this_month\":{\"size\":2000,\"type\":\"VARCHAR\"}}}}}},\"repeatElement\":\"usage_records\"}",
+            "schemaType": "UNFLATTENED_REPEAT_ELEMENT",
+            "authEnabled": true,
+            "authType": "Basic Auth",
+            "authScheme": "Basic",
+            "authParameterType": "",
+            "pagingSizeParameter": "PageSize",
+            "pagingSize": "50",
+            "nextAbsoluteUriDataKey": "next_page_uri",
+            "baseUriDataKey": "https://api.twilio.com",
+            "pagingOffsetParameter": null,
+            "pagingTotalItemsParameter": null,
+            "nextCursorKey": null,
+            "nextCursorParameter": null,
+            "pageNumberParameter": null,
+            "lastPageKey": null,
+            "params": [
+                {
+                    "name": "version",
+                    "type": "URI",
+                    "constant": "false",
+                    "value": "2010-04-01",
+                    "sensitiveData": "false"
+                },
+                {
+                    "name": "AccountSid",
+                    "type": "URI",
+                    "constant": "false",
+                    "value": "",
+                    "sensitiveData": "false"
+                }
+            ]
+        },
+        {
+            "endpointId": "9d0a6c68-3141-4784-a0b4-15cce25f157d",
+            "endpointName": "Get Events",
+            "connectorName": "Twilio",
+            "description": "",
+            "endpointUri": "https://monitor.twilio.com/{version}/Events",
+            "httpRequestType": "GET",
+            "pagingEnabled": true,
+            "pagingType": "FULL_PATH",
+            "endpointSchema": "{\"schema\":{\"events\":{\"type\":\"structarray\",\"objectcontents\":{\"sid\":{\"size\":2000,\"type\":\"VARCHAR\"},\"url\":{\"size\":2000,\"type\":\"VARCHAR\"},\"links\":{\"type\":\"struct\",\"objectcontents\":{\"actor\":{\"size\":2000,\"type\":\"VARCHAR\"},\"resource\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"source\":{\"size\":2000,\"type\":\"VARCHAR\"},\"actor_sid\":{\"size\":2000,\"type\":\"VARCHAR\"},\"actor_type\":{\"size\":2000,\"type\":\"VARCHAR\"},\"event_data\":{\"size\":2000,\"type\":\"struct\",\"objectcontents\":{\"resource_properties\":{\"type\":\"struct\",\"objectcontents\":{\"email\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"},\"previous\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"roles\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"},\"previous\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"status\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"},\"previous\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"sms_url\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"full_name\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"},\"previous\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"last_name\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"},\"previous\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"voice_url\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"auth_token\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"},\"previous\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"first_name\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"},\"previous\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"api_version\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"alert_config\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"type\":\"struct\",\"objectcontents\":{\"enabled\":{\"type\":\"BOOLEAN\"},\"product\":{\"size\":2000,\"type\":\"VARCHAR\"},\"priority\":{\"size\":2000,\"type\":\"VARCHAR\"},\"description\":{\"size\":2000,\"type\":\"VARCHAR\"},\"friendly_name\":{\"size\":2000,\"type\":\"VARCHAR\"},\"notifications\":{\"size\":10000,\"type\":\"VARCHAR\"},\"record_filter\":{\"type\":\"struct\",\"objectcontents\":{\"operands\":{\"size\":10000,\"type\":\"VARCHAR\"},\"field_name\":{\"size\":2000,\"type\":\"VARCHAR\"},\"field_value\":{\"size\":2000,\"type\":\"VARCHAR\"},\"equality_type\":{\"size\":2000,\"type\":\"VARCHAR\"},\"operator_type\":{\"size\":2000,\"type\":\"VARCHAR\"},\"advanced_filters\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"alert_threshold\":{\"type\":\"struct\",\"objectcontents\":{\"operation\":{\"size\":2000,\"type\":\"VARCHAR\"},\"comparison\":{\"size\":2000,\"type\":\"VARCHAR\"},\"time_period\":{\"size\":2000,\"type\":\"VARCHAR\"},\"retrigger_period\":{\"size\":2000,\"type\":\"VARCHAR\"},\"advanced_operation\":{\"size\":2000,\"type\":\"VARCHAR\"},\"warn_level_threshold\":{\"size\":2000,\"type\":\"VARCHAR\"},\"alert_level_threshold\":{\"type\":\"DOUBLE PRECISION\",\"scale\":1,\"precision\":2}}},\"measure_field_name\":{\"size\":2000,\"type\":\"VARCHAR\"},\"is_sub_account_wide\":{\"type\":\"BOOLEAN\"},\"flap_detection_method\":{\"size\":2000,\"type\":\"VARCHAR\"}}}}},\"email_address\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"},\"previous\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"friendly_name\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"principal_sid\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"status_callback\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"sms_fallback_url\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"voice_fallback_url\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"secondary_auth_token\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"},\"previous\":{\"size\":2000,\"type\":\"VARCHAR\"}}},\"sms_status_callback_url\":{\"type\":\"struct\",\"objectcontents\":{\"updated\":{\"size\":2000,\"type\":\"VARCHAR\"}}}}}}},\"event_date\":{\"type\":\"TIMESTAMP\"},\"event_type\":{\"size\":2000,\"type\":\"VARCHAR\"},\"account_sid\":{\"size\":2000,\"type\":\"VARCHAR\"},\"description\":{\"size\":2000,\"type\":\"VARCHAR\"},\"resource_sid\":{\"size\":2000,\"type\":\"VARCHAR\"},\"resource_type\":{\"size\":2000,\"type\":\"VARCHAR\"},\"source_ip_address\":{\"size\":2000,\"type\":\"VARCHAR\"}}}},\"repeatElement\":\"events\"}",
+            "schemaType": "UNFLATTENED_REPEAT_ELEMENT",
+            "authEnabled": true,
+            "authType": "Basic Auth",
+            "authScheme": "Basic",
+            "authParameterType": "",
+            "pagingSizeParameter": "PageSize",
+            "pagingSize": "50",
+            "nextAbsoluteUriDataKey": "meta/next_page_url",
+            "baseUriDataKey": null,
+            "pagingOffsetParameter": null,
+            "pagingTotalItemsParameter": null,
+            "nextCursorKey": null,
+            "nextCursorParameter": null,
+            "pageNumberParameter": null,
+            "lastPageKey": null,
+            "params": [
+                {
+                    "name": "version",
+                    "type": "URI",
+                    "constant": "false",
+                    "value": "v1",
+                    "sensitiveData": "false"
+                }
+            ]
+        },
+        {
+            "endpointId": "8b2592a5-2871-4cdb-bf4c-ba3b5d6bac53",
+            "endpointName": "Get Applications",
+            "connectorName": "Twilio",
+            "description": "",
+            "endpointUri": "https://api.twilio.com/{version}/Accounts/{AccountSid}/Applications.json",
+            "httpRequestType": "GET",
+            "pagingEnabled": true,
+            "pagingType": "RELATIVE_PATH",
+            "endpointSchema": "{\"schema\":{\"applications\":{\"type\":\"structarray\",\"objectcontents\":{\"sid\":{\"size\":2000,\"type\":\"VARCHAR\"},\"uri\":{\"size\":2000,\"type\":\"VARCHAR\"},\"sms_url\":{\"size\":2000,\"type\":\"VARCHAR\"},\"voice_url\":{\"size\":2000,\"type\":\"VARCHAR\"},\"sms_method\":{\"size\":2000,\"type\":\"VARCHAR\"},\"account_sid\":{\"size\":2000,\"type\":\"VARCHAR\"},\"api_version\":{\"size\":2000,\"type\":\"VARCHAR\"},\"date_created\":{\"type\":\"TIMESTAMP\"},\"date_updated\":{\"type\":\"TIMESTAMP\"},\"voice_method\":{\"size\":2000,\"type\":\"VARCHAR\"},\"friendly_name\":{\"size\":2000,\"type\":\"VARCHAR\"},\"status_callback\":{\"size\":2000,\"type\":\"VARCHAR\"},\"sms_fallback_url\":{\"size\":2000,\"type\":\"VARCHAR\"},\"voice_fallback_url\":{\"size\":2000,\"type\":\"VARCHAR\"},\"sms_fallback_method\":{\"size\":2000,\"type\":\"VARCHAR\"},\"sms_status_callback\":{\"size\":2000,\"type\":\"VARCHAR\"},\"voice_fallback_method\":{\"size\":2000,\"type\":\"VARCHAR\"},\"status_callback_method\":{\"size\":2000,\"type\":\"VARCHAR\"},\"voice_caller_id_lookup\":{\"type\":\"BOOLEAN\"},\"message_status_callback\":{\"size\":2000,\"type\":\"VARCHAR\"},\"public_application_connect_enabled\":{\"type\":\"BOOLEAN\"}}}},\"repeatElement\":\"applications\"}",
+            "schemaType": "UNFLATTENED_REPEAT_ELEMENT",
+            "authEnabled": true,
+            "authType": "Basic Auth",
+            "authScheme": "Basic",
+            "authParameterType": "",
+            "pagingSizeParameter": "PageSize",
+            "pagingSize": "50",
+            "nextAbsoluteUriDataKey": "next_page_uri",
+            "baseUriDataKey": "https://api.twilio.com",
+            "pagingOffsetParameter": null,
+            "pagingTotalItemsParameter": null,
+            "nextCursorKey": null,
+            "nextCursorParameter": null,
+            "pageNumberParameter": null,
+            "lastPageKey": null,
+            "params": [
+                {
+                    "name": "version",
+                    "type": "URI",
+                    "constant": "false",
+                    "value": "2010-04-01",
+                    "sensitiveData": "false"
+                },
+                {
+                    "name": "AccountSid",
+                    "type": "URI",
+                    "constant": "false",
+                    "value": "",
+                    "sensitiveData": "false"
+                }
+            ]
+        },
+        {
+            "endpointId": "c84d3e2c-75e8-41e2-880c-a80426456751",
+            "endpointName": "Get Addresses",
+            "connectorName": "Twilio",
+            "description": "",
+            "endpointUri": "https://api.twilio.com/{version}/Accounts/{AccountSid}/Addresses.json",
+            "httpRequestType": "GET",
+            "pagingEnabled": true,
+            "pagingType": "RELATIVE_PATH",
+            "endpointSchema": "{\"schema\":{\"addresses\":{\"type\":\"structarray\",\"objectcontents\":{\"sid\":{\"size\":2000,\"type\":\"VARCHAR\"},\"uri\":{\"size\":2000,\"type\":\"VARCHAR\"},\"city\":{\"size\":2000,\"type\":\"VARCHAR\"},\"region\":{\"size\":2000,\"type\":\"VARCHAR\"},\"street\":{\"size\":2000,\"type\":\"VARCHAR\"},\"verified\":{\"type\":\"BOOLEAN\"},\"validated\":{\"type\":\"BOOLEAN\"},\"account_sid\":{\"size\":2000,\"type\":\"VARCHAR\"},\"iso_country\":{\"size\":2000,\"type\":\"VARCHAR\"},\"postal_code\":{\"size\":2000,\"type\":\"VARCHAR\"},\"date_created\":{\"size\":2000,\"type\":\"VARCHAR\"},\"date_updated\":{\"size\":2000,\"type\":\"VARCHAR\"},\"customer_name\":{\"size\":2000,\"type\":\"VARCHAR\"},\"friendly_name\":{\"size\":2000,\"type\":\"VARCHAR\"},\"street_secondary\":{\"size\":2000,\"type\":\"VARCHAR\"},\"emergency_enabled\":{\"type\":\"BOOLEAN\"}}}},\"repeatElement\":\"addresses\"}",
+            "schemaType": "UNFLATTENED_REPEAT_ELEMENT",
+            "authEnabled": true,
+            "authType": "Basic Auth",
+            "authScheme": "Basic",
+            "authParameterType": "",
+            "pagingSizeParameter": "PageSize",
+            "pagingSize": "50",
+            "nextAbsoluteUriDataKey": "next_page_uri",
+            "baseUriDataKey": "https://api.twilio.com",
+            "pagingOffsetParameter": null,
+            "pagingTotalItemsParameter": null,
+            "nextCursorKey": null,
+            "nextCursorParameter": null,
+            "pageNumberParameter": null,
+            "lastPageKey": null,
+            "params": [
+                {
+                    "name": "version",
+                    "type": "URI",
+                    "constant": "false",
+                    "value": "2010-04-01",
+                    "sensitiveData": "false"
+                },
+                {
+                    "name": "AccountSid",
+                    "type": "URI",
+                    "constant": "false",
+                    "value": "",
+                    "sensitiveData": "false"
+                }
+            ]
+        }
+    ],
+    "version": "Built"
+}

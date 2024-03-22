@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "4577c046-54bb-4693-9061-294a45e96713",
+		"name": "Punk API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31384148",
+		"_collection_link": "https://www.postman.com/planetary-robot-575965/workspace/x-kom/collection/10955678-4577c046-54bb-4693-9061-294a45e96713?action=share&source=collection_link&creator=31384148"
+	},
+	"item": [
+		{
+			"name": "Get beers 1-5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.punkapi.com/v2/beers?per_page=5&page=1",
+					"protocol": "https",
+					"host": [
+						"api",
+						"punkapi",
+						"com"
+					],
+					"path": [
+						"v2",
+						"beers"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "1|2|3|4|5",
+							"disabled": true
+						},
+						{
+							"key": "per_page",
+							"value": "5"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get beer 123",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"ID is 123\", () => {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].id).to.eql(123);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.punkapi.com/v2/beers/123",
+					"protocol": "https",
+					"host": [
+						"api",
+						"punkapi",
+						"com"
+					],
+					"path": [
+						"v2",
+						"beers",
+						"123"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "1|2|3|4|5",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get 40 elements from 3th page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].id).to.eql(81);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response length is equal to 40\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.lengthOf(40);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.punkapi.com/v2/beers?per_page=40&page=3",
+					"protocol": "https",
+					"host": [
+						"api",
+						"punkapi",
+						"com"
+					],
+					"path": [
+						"v2",
+						"beers"
+					],
+					"query": [
+						{
+							"key": "per_page",
+							"value": "40"
+						},
+						{
+							"key": "page",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ABV in range <5,7>",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Each beer in the response has an 'abv' value between 5 and 7\", function () {\r",
+							"    var beers = pm.response.json();\r",
+							"\r",
+							"    beers.forEach(function (beer) {\r",
+							"        pm.expect(beer.abv).to.be.greaterThan(5);\r",
+							"        pm.expect(beer.abv).to.be.lessThan(7);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.punkapi.com/v2/beers?abv_lt=7.0&abv_gt=5.0",
+					"protocol": "https",
+					"host": [
+						"api",
+						"punkapi",
+						"com"
+					],
+					"path": [
+						"v2",
+						"beers"
+					],
+					"query": [
+						{
+							"key": "abv_lt",
+							"value": "7.0"
+						},
+						{
+							"key": "abv_gt",
+							"value": "5.0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Brewed in 2010",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Each beer in the response has an 'abv' value between 5 and 7\", function () {\r",
+							"    var beers = pm.response.json();\r",
+							"\r",
+							"    beers.forEach(function (beer) {\r",
+							"        pm.expect(beer.first_brewed).to.contain(2010);\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.punkapi.com/v2/beers?brewed_before=01-2011&brewed_after=12-2009",
+					"protocol": "https",
+					"host": [
+						"api",
+						"punkapi",
+						"com"
+					],
+					"path": [
+						"v2",
+						"beers"
+					],
+					"query": [
+						{
+							"key": "brewed_before",
+							"value": "01-2011"
+						},
+						{
+							"key": "brewed_after",
+							"value": "12-2009"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Data driven beer testing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.punkapi.com/v2/beers?malt={{malt}}&hops={{hops}}&food={{food}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"punkapi",
+						"com"
+					],
+					"path": [
+						"v2",
+						"beers"
+					],
+					"query": [
+						{
+							"key": "malt",
+							"value": "{{malt}}"
+						},
+						{
+							"key": "hops",
+							"value": "{{hops}}"
+						},
+						{
+							"key": "food",
+							"value": "{{food}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "malt",
+			"value": "Simcoe",
+			"type": "string"
+		},
+		{
+			"key": "hops",
+			"value": "Munich",
+			"type": "string"
+		},
+		{
+			"key": "food",
+			"value": "salad",
+			"type": "string"
+		}
+	]
+}
