@@ -32,27 +32,8 @@ fs.readFile("./example.postman_collection.json", "utf8", (err, jsonString) => {
                 "endpointId": endpointId,
                 "endpointName": endpointName,
                 "connectorName": collectionName,
-                "description": "",
                 "endpointUri": endpointURL,
                 "httpRequestType": endpointMethod,
-                "pagingEnabled": false,
-                "pagingType": null,
-                "schemaType": "UNFLATTENED_NO_REPEAT_ELEMENT",
-                "authEnabled": false,
-                "authType": "",
-                "authScheme": "",
-                "authParameterType": "",
-                "pagingSizeParameter": null,
-                "pagingSize": null,
-                "nextAbsoluteUriDataKey": null,
-                "baseUriDataKey": null,
-                "pagingOffsetParameter": null,
-                "pagingTotalItemsParameter": null,
-                "nextCursorKey": null,
-                "nextCursorParameter": null,
-                "pageNumberParameter": null,
-                "lastPageKey": null,
-                "params": []
             };
 
             exportData.endpoints.push(endpoint);
