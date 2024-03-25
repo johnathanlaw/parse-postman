@@ -1,15 +1,10 @@
-<input type="file" id="fileInput">
+<input type="file" id="file-selector">
 
 <script>
-const fileInput = document.getElementById('fileInput');
+const fileInput = document.getElementById('file-selector');
 fileInput.addEventListener('change', () => {
   const file = fileInput.files[0];
-  const reader = new FileReader();
-
-  reader.onload = () => {
-    console.log(reader.result); // Displays the content of the file
-  };
-
-  reader.readAsText(file);
+  readPostmanFile(file);
 });
 </script>
+<script src="parse.js"></script>

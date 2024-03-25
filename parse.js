@@ -1,22 +1,28 @@
-const fs = require("fs");
+const POSTMAN_FILE_EXTENSION = '.postman_collection.json';
 
-fs.readFile("./example.postman_collection.json", "utf8", (err, jsonString) => {
-    if (err) {
-        console.log("Error reading file:", err);
-        return;
-    }
+function readPostmanFile(file) {
+    const reader = new FileReader();
+    reader.addEventListener('load', (event) => {
+        if (!file.type?.startsWith('application/json')) {
+            console.log('File is not a JSON file!', file.type, file);
+            return;
+        }
 
-    try {
-        const data = JSON.parse(jsonString);
+        if (!file.name?.endsWith(POSTMAN_FILE_EXTENSION)) {
+            console.log('Does not appear to be a Postman Collection!', file.name, file);
+            return;
+        }
+
+        const data = JSON.parse(event.target.result);
 
         const collectionName = data.info.name;
         console.log(`Collection: ${collectionName}`);
 
         const exportData =
         {
-            "connectorName": collectionName,
-            "endpoints": [],
-            "version": "0.0.1"
+            'connectorName': collectionName,
+            'endpoints': [],
+            'version': '0.0.1'
         };
 
         for (let i in data.item) {
@@ -29,20 +35,21 @@ fs.readFile("./example.postman_collection.json", "utf8", (err, jsonString) => {
 
             const endpoint =
             {
-                "endpointId": endpointId,
-                "endpointName": endpointName,
-                "connectorName": collectionName,
-                "endpointUri": endpointURL,
-                "httpRequestType": endpointMethod,
+                'endpointId': endpointId,
+                'endpointName': endpointName,
+                'connectorName': collectionName,
+                'endpointUri': endpointURL,
+                'httpRequestType': endpointMethod,
             };
 
             exportData.endpoints.push(endpoint);
         }
 
         const outputFile = `${collectionName}.json`;
-        fs.writeFileSync(outputFile, JSON.stringify(exportData));
-        console.log(`Written ${outputFile}`);
-    } catch (err) {
-        console.log("Error parsing JSON:", err);
-    }
-});
+
+        console.log(`Would have created ${outputFile}`);
+        console.log(exportData);
+    });
+
+    reader.readAsText(file);
+}
