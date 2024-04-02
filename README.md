@@ -1,1 +1,2 @@
 # parse-postman
+Take a Postman collection (in [v2.1.0 format](https://schema.postman.com/collection/json/v2.1.0/draft-07/collection.json)) and convert into format allowing import into Custom Connector!

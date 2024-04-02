@@ -45,6 +45,11 @@ function readPostmanFile(file) {
             exportData.endpoints.push(endpoint);
         }
 
+        if (exportData.endpoints.length === 0) {
+            console.log('No endpoints detected. Is your collection v2.1.0?');
+            return;
+        }
+
         const outputFile = `${collectionName}.json`;
 
         console.log(`Would have created ${outputFile}`);
