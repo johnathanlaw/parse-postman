@@ -48,8 +48,19 @@ function readPostmanFile(file) {
         const outputFile = `${collectionName}.json`;
 
         console.log(`Would have created ${outputFile}`);
-        console.log(exportData);
+        createDownloadLink({ filename: outputFile, data: exportData });
     });
 
     reader.readAsText(file);
+}
+
+function createDownloadLink(file) {
+    const url = URL.createObjectURL(new Blob([JSON.stringify(file.data, null, 2)], {type: 'application/json'}));
+    const a = document.createElement('a');
+
+    a.href = url;
+    a.download = file.filename;
+    a.innerHTML = file.filename;
+
+    document.getElementById('download').appendChild(a);
 }
