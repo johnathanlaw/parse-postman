@@ -15,9 +15,11 @@ function processItem(collectionName, items) {
 
         if (!item?.request) {
             // This is an item-group, iterate
-            return processItem(collectionName, item.item)
+            console.log('Item Group!', item.item);
+            endpointArray = endpointArray.concat(processItem(collectionName, item.item));
         }
         else {
+            console.log('Item!', item);
             const endpointId = crypto.randomUUID();
             const endpointName = item.name;
             const endpointMethod = item.request.method;
@@ -36,6 +38,7 @@ function processItem(collectionName, items) {
         }
     }
 
+    console.log('Completed Iteration!', endpointArray);
     return endpointArray;
 }
 
@@ -65,7 +68,7 @@ function readPostmanFile(file) {
             'version': '0.0.1'
         };
 
-
+        console.log('Data.item:', data.item);
         exportData.endpoints = processItem(collectionName, data.item);
 
         if (exportData.endpoints.length === 0) {
