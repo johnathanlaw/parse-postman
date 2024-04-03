@@ -71,6 +71,8 @@ function readPostmanFile(file) {
         console.log('Data.item:', data.item);
         exportData.endpoints = processItem(collectionName, data.item);
 
+        //todo: handle global vars
+
         if (exportData.endpoints.length === 0) {
             console.log('No endpoints detected. Is your collection v2.1.0?');
             return;
@@ -78,7 +80,7 @@ function readPostmanFile(file) {
 
         const outputFile = `${collectionName}.json`;
 
-        console.log(`Would have created ${outputFile}`);
+        console.log(`Created ${outputFile}`);
         createDownloadLink({ filename: outputFile, data: exportData });
     });
 
