@@ -1,33 +1,23 @@
 const POSTMAN_FILE_EXTENSION = '.postman_collection.json';
 
-function readPostmanFile(file) {
-    const reader = new FileReader();
-    reader.addEventListener('load', (event) => {
-        if (!file.type?.startsWith('application/json')) {
-            console.log('File is not a JSON file!', file.type, file);
-            return;
+function processItem(collectionName, items) {
+    /*
+    * Items are a nested structure
+    * See https://schema.postman.com/collection/json/v2.1.0/draft-07/collection.json
+    * Item is an array of `definitions/item` or `definitions/item-group`
+    * If it's an actual item it has a `request` otherwise it might be a group.
+    */
+
+    let endpointArray = [];
+
+    for (let i in items) {
+        const item = items[i];
+
+        if (!item?.request) {
+            // This is an item-group, iterate
+            return processItem(collectionName, item.item)
         }
-
-        if (!file.name?.endsWith(POSTMAN_FILE_EXTENSION)) {
-            console.log('Does not appear to be a Postman Collection!', file.name, file);
-            return;
-        }
-
-        const data = JSON.parse(event.target.result);
-
-        const collectionName = data.info.name;
-        console.log(`Collection: ${collectionName}`);
-
-        const exportData =
-        {
-            'connectorName': collectionName,
-            'endpoints': [],
-            'version': '0.0.1'
-        };
-
-        for (let i in data.item) {
-            const item = data.item[i];
-
+        else {
             const endpointId = crypto.randomUUID();
             const endpointName = item.name;
             const endpointMethod = item.request.method;
@@ -42,8 +32,41 @@ function readPostmanFile(file) {
                 'httpRequestType': endpointMethod,
             };
 
-            exportData.endpoints.push(endpoint);
+            endpointArray.push(endpoint);
         }
+    }
+
+    return endpointArray;
+}
+
+function readPostmanFile(file) {
+    const reader = new FileReader();
+    reader.addEventListener('load', (event) => {
+        if (!file.type?.startsWith('application/json')) {
+            console.log('File is not a JSON file!', file.type, file);
+            return;
+        }
+
+        if (!file.name?.endsWith(POSTMAN_FILE_EXTENSION)) {
+            console.log('Does not appear to be a Postman Collection!', file.name, file);
+            return;
+        }
+
+        const data = JSON.parse(event.target.result);
+        const collectionName = data.info.name;
+
+        console.log(`Collection: ${collectionName}`);
+        console.log('Data:', data);
+
+        const exportData =
+        {
+            'connectorName': collectionName,
+            'endpoints': [],
+            'version': '0.0.1'
+        };
+
+
+        exportData.endpoints = processItem(collectionName, data.item);
 
         if (exportData.endpoints.length === 0) {
             console.log('No endpoints detected. Is your collection v2.1.0?');
@@ -60,7 +83,7 @@ function readPostmanFile(file) {
 }
 
 function createDownloadLink(file) {
-    const url = URL.createObjectURL(new Blob([JSON.stringify(file.data, null, 2)], {type: 'application/json'}));
+    const url = URL.createObjectURL(new Blob([JSON.stringify(file.data, null, 2)], { type: 'application/json' }));
     const a = document.createElement('a');
 
     a.href = url;
