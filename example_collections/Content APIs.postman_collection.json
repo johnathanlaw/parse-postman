@@ -1,0 +1,2214 @@
+{
+	"info": {
+		"_postman_id": "842422ee-2b37-4386-999a-0c37fc5f182c",
+		"name": "Content APIs",
+		"description": "Please note that these are versioned set of APIs and they are different than the earlier one.\n\nThese must be used with the **content-api-env-versioning** environment.\n\nContent APIs are the APIs that are published with the versioned release. These APIs bring capabilities to partners/developers to create rich content via LinkedIn Ads with minimal operational and technical overhead.\n\n**You must apply for access to the Marketing Developer Platform in order to use these APIs. See the** [**Developer Portal**](https://developer.linkedin.com/product-catalog/marketing/campaign-management) **on how to apply.**",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31384148"
+	},
+	"item": [
+		{
+			"name": "Use Cases",
+			"item": [
+				{
+					"name": "InMail Content",
+					"item": [
+						{
+							"name": "Create InMail Content",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text"
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"account\": \"<Account Number>\",\n \"name\": \"test strings\",\n \"subject\": \"test subject\",\n \"sender\": \"<person urn>\",\n \"customFooter\": \"terms and conditions\",\n \"htmlBody\":\"sample body\",\n \"subContent\": {\n   \"regular\": {\n     \"callToActionText\": \"sample string\",\n     \"callToActionLandingPageUrl\":\"http://www.linkedin.com\",\n     \"rightRailAdPicture\": \"<image urn>\"\n   }\n }\n}"
+								},
+								"url": {
+									"raw": "https://{{baseUrl}}/rest/inMailContents/",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rest",
+										"inMailContents",
+										""
+									]
+								},
+								"description": "API to create an inMail Content."
+							},
+							"response": []
+						},
+						{
+							"name": "Get InMail Content",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text"
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/rest/inMailContents/{adInMailContentId}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rest",
+										"inMailContents",
+										"{adInMailContentId}"
+									]
+								},
+								"description": "API to retrieve an inMail Content."
+							},
+							"response": []
+						},
+						{
+							"name": "Update InMail Content",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"patch\": {\n   \"$set\": {\n     \"name\": \"test strings new\"\n   }\n }\n}\n"
+								},
+								"url": {
+									"raw": "https://{{baseUrl}}/rest/inMailContents/{adInMailContentId}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rest",
+										"inMailContents",
+										"{adInMailContentId}"
+									]
+								},
+								"description": "API to update an inMail Content."
+							},
+							"response": []
+						},
+						{
+							"name": "Batch Get InMail Content",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-RestLi-Method",
+										"value": "BATCH_CREATE",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/rest/inMailContents?ids={encoded adInMailContentId}&ids={encoded adInMailContentId}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rest",
+										"inMailContents"
+									],
+									"query": [
+										{
+											"key": "ids",
+											"value": "{encoded adInMailContentId}"
+										},
+										{
+											"key": "ids",
+											"value": "{encoded adInMailContentId}"
+										}
+									]
+								},
+								"description": "API to retrieve an inMail Content in Batches."
+							},
+							"response": []
+						},
+						{
+							"name": "Send Test InMail",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text"
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/rest/inMailContents?action=sendTestInMail",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rest",
+										"inMailContents"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "sendTestInMail"
+										}
+									]
+								},
+								"description": "API to send/share an inMail Content."
+							},
+							"response": []
+						}
+					],
+					"description": "You can set up the message contents sent to targeted LinkedIn members' inbox, either as a Message Ad or a Conversation Ad."
+				},
+				{
+					"name": "Image Ad",
+					"item": [
+						{
+							"name": "Upload an Image",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/octet-stream",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{upload_url}}",
+									"host": [
+										"{{upload_url}}"
+									]
+								},
+								"description": "This is a generic Upload URL call without init."
+							},
+							"response": []
+						},
+						{
+							"name": "Initialize Image Upload",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"initializeUploadRequest\": {\n        \"owner\": \"urn:li:organization:5583111\"\n  }\n}\n"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/images?action=initializeUpload",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"images"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "initializeUpload"
+										}
+									]
+								},
+								"description": "Use the `initializeUpload` action to register the upload. When you initialize, you declare the upcoming upload. Use the upload URL to upload the image."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single Image",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/rest/images/{{image_urn}}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rest",
+										"images",
+										"{{image_urn}}"
+									]
+								},
+								"description": "This API rerieve a single image."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Multiple Images",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/rest/images?ids=List({{image_urn1}},{{image_urn2}})",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rest",
+										"images"
+									],
+									"query": [
+										{
+											"key": "ids",
+											"value": "List({{image_urn1}},{{image_urn2}})"
+										}
+									]
+								},
+								"description": "This API rerieve multiple images."
+							},
+							"response": []
+						},
+						{
+							"name": "Create Image Content",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"author\": \"{{company_id}}\",\n  \"commentary\": \"test strings\",\n  \"visibility\": \"PUBLIC\",\n  \"distribution\": {\n    \"feedDistribution\": \"MAIN_FEED\",\n    \"targetEntities\": [],\n    \"thirdPartyDistributionChannels\": []\n  },\n  \"content\": {\n   \"media\": {\"id\": \"{{image_urn}}\"}\n  },\n  \"lifecycleState\": \"PUBLISHED\",\n  \"isReshareDisabledByAuthor\": false\n}\n\n"
+								},
+								"url": {
+									"raw": "https://{{baseUrl}}/rest/posts",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rest",
+										"posts"
+									]
+								},
+								"description": "This API creates an image content."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Image Content",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/rest/posts/{postId}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rest",
+										"posts",
+										"{postId}"
+									]
+								},
+								"description": "This API rerieve the content associated with a single image."
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch multiple Image Content",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/rest/posts?ids=List({encoded postId},{encoded postId})",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rest",
+										"posts"
+									],
+									"query": [
+										{
+											"key": "ids",
+											"value": "List({encoded postId},{encoded postId})"
+										}
+									]
+								},
+								"description": "This API rerieve content from multiple images."
+							},
+							"response": []
+						}
+					],
+					"description": "Image ads help you engage business decision-makers on LinkedIn's mobile and desktop news feed. You can create image ads in two ways:\n\n\\*   Post images to your Company Page and sponsor the post to reach more than just followers. Your organization can share a first-hand look into your company culture, products, news, and events with a company page image to drive further engagement and conversation.\n\\*   Create image ads that bypass Company Page followers and go directly to your news feed."
+				},
+				{
+					"name": "Video Ad",
+					"item": [
+						{
+							"name": "Upload a Video",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/octet-stream",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{upload_url}}",
+									"host": [
+										"{{upload_url}}"
+									]
+								},
+								"description": "This is a generic API to upload the data."
+							},
+							"response": []
+						},
+						{
+							"name": "Initialize Video Upload",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"initializeUploadRequest\": {\n       \"owner\": \"organization_urn\",\n       \"fileSizeBytes\": 1055736 ,\n       \"uploadCaptions\": false, //set to true to upload video with caption\n       \"uploadThumbnail\": false //set to true to upload video with thumbnail\n}}\n"
+								},
+								"url": {
+									"raw": "https://{{baseUrl}}/videos?action=initializeUpload",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "initializeUpload"
+										}
+									]
+								},
+								"description": "Use the `initializeUpload` action to register the upload. When you initialize, you declare the upcoming upload. Use the upload URL from the `uploadInstructions` to upload the video."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single video",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/images/{{image_urn}}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"images",
+										"{{image_urn}}"
+									]
+								},
+								"description": "This API retrieves a single video."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Multiple Videos",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/images?ids=List({{image_urn1}},{{image_urn2}})",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"images"
+									],
+									"query": [
+										{
+											"key": "ids",
+											"value": "List({{image_urn1}},{{image_urn2}})"
+										}
+									]
+								},
+								"description": "This API retrieves multiple videos."
+							},
+							"response": []
+						}
+					],
+					"description": "The Videos API is a new offering from LinkedIn that features the ability to upload a captions file as well as thumbnail video functionality."
+				},
+				{
+					"name": "Creatives",
+					"item": [
+						{
+							"name": "Create an Organic Creative",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"content\": {\n    \"reference\": \"{{urn_of_UGCPost}}\"\n  },\n  \"campaign\": \"{{urn_of_campaign}}\",\n  \"intendedStatus\": \"ACTIVE\"\n}\n"
+								},
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives"
+									]
+								},
+								"description": "You can sponsor an existing organic post that has been serving your company page followers and gone viral."
+							},
+							"response": [
+								{
+									"name": "Create a Creative",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "LinkedIn-Version",
+												"value": "220204",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://api.linkedin.com/rest/videos?action=initializeUpload",
+											"protocol": "https",
+											"host": [
+												"api",
+												"linkedin",
+												"com"
+											],
+											"path": [
+												"rest",
+												"videos"
+											],
+											"query": [
+												{
+													"key": "action",
+													"value": "initializeUpload"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": "{ \"initializeUploadRequest\": {\n        \"owner\": \"{{URN of your organization}}\",\n        \"fileSizeBytes\": 1055736 ,\n        \"uploadCaptions\": false,\n        \"uploadThumbnail\": false\n}}"
+								}
+							]
+						},
+						{
+							"name": "Create an Sponsored Creative",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives?action=createInline",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "createInline"
+										}
+									]
+								},
+								"description": "This API creates a sponsored content by adding the action as createInline."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a  Sponsored Creative",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives/{{urn_creatives}}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives",
+										"{{urn_creatives}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search for Creative",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives?accounts=List(id1,id2,id3)&campaigns=List(id1,id2,id3)&contentReferences=List(id1,id2,id3)&creatives=List(id1,id2,id3)&intendedStatuses=List(ARCHIVED,CANCELED,ARCHIVED)&isTestAccount=true&isTotalIncluded=false&leadgenCreativeCallToActionDestinations=List()&q=criteria&sortOrder=ASCENDING",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives"
+									],
+									"query": [
+										{
+											"key": "accounts",
+											"value": "List(id1,id2,id3)"
+										},
+										{
+											"key": "campaigns",
+											"value": "List(id1,id2,id3)"
+										},
+										{
+											"key": "contentReferences",
+											"value": "List(id1,id2,id3)"
+										},
+										{
+											"key": "creatives",
+											"value": "List(id1,id2,id3)"
+										},
+										{
+											"key": "intendedStatuses",
+											"value": "List(ARCHIVED,CANCELED,ARCHIVED)"
+										},
+										{
+											"key": "isTestAccount",
+											"value": "true"
+										},
+										{
+											"key": "isTotalIncluded",
+											"value": "false"
+										},
+										{
+											"key": "leadgenCreativeCallToActionDestinations",
+											"value": "List()"
+										},
+										{
+											"key": "q",
+											"value": "criteria"
+										},
+										{
+											"key": "sortOrder",
+											"value": "ASCENDING"
+										}
+									]
+								},
+								"description": "You can search for creative content in order to get a collection of creatives matching your search parameters. The Creative API currently supports search by `creative id`, `campaign`, `account`, `content reference`, `intendedStatus`, `leadgenCreativeCallToActionDestinations` and test fields. The API supports finding creatives from multiple accounts. The values within each field are displayed with 'or' (ORed) and values across fields are displayed with 'and' (ANDed)."
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Creative",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_version}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives/{creative ID}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives",
+										"{creative ID}"
+									]
+								},
+								"description": "You can change the details of following Creatives fields:\n\n\\*   `intendedStatus`:\n\\*   `leadgenCallToAction`: field `adFormUrn` - The ad form that is a target destination for the `callToAction` button. It can only be modified when the creative is in DRAFT status. It is read only once it is set for a creative and once it transitions to any non-draft intended status.\n\\*   `leadgenCallToAction`: field label `-Label` for the `callToAction` button\n    \n\n  \nThis API updates a sponsored creative."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Creative",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives/{creative ID}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives",
+										"{creative ID}"
+									]
+								},
+								"description": "A Creative can be deleted. Use DELETE method to delete a creative that meets one of the following conditions. To start the process of deleting other creative, update the status to `PENDING_DELETION`.\n\n\\*   It is in a DRAFT state.\n\\*   It is linked to a Campaign in a DRAFT state.\n\\*   It is a video ad creative and `processingState` is `PROCESSING_FAILED`.\n    \n\nThe header X-RestLi-Method must be included in the request and set to `DELETE`."
+							},
+							"response": []
+						}
+					],
+					"description": "The Creatives API contains all the data and information for visually rendering an ad. There are several types of Ad Creatives that you can associate with campaigns including:"
+				},
+				{
+					"name": "Posts",
+					"item": [
+						{
+							"name": "Create Organic Post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "X-Restli-Protocol-Version",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"author\": \"{{organization_urn}}\",\n  \"commentary\": \"Sample Video Post\",\n  \"visibility\": \"PUBLIC\",\n  \"distribution\": {\n    \"feedDistribution\": \"NONE\",\n    \"targetEntities\": [{\n                \"geoLocations\": [\n                    \"{{urn_geo}}\"\n                ],\n                \"seniorities\": [\n                    \"urn:li:seniority:3\"\n                ]\n            }],\n    \"thirdPartyDistributionChannels\": []\n  },\n  \"content\":{\n    \"media\":{\n      \"title\":\"title of the video\",\n      \"id\": \"{[urn_video}}\"\n      }\n    },\n  \"lifecycleState\": \"PUBLISHED\",\n  \"isReshareDisabledByAuthor\": true\n}\n\n"
+								},
+								"url": {
+									"raw": "https://{{baseUrl}}/posts",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts"
+									]
+								},
+								"description": "Simplest form of post creation where an organic post is made ith a sample text at a page."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Posts by URN",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/posts/{encoded ugcPostUrn|shareUrn}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts",
+										"{encoded ugcPostUrn|shareUrn}"
+									]
+								},
+								"description": "Creating posts with image requires uploading an image asset to obtain a Image URN (urn:li:image:{id}) for creating the post. See the [Images API](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/community-management/shares/images-api?view=li-lms-2022-08) for instructions on how to do this."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Multiple Post by URN",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "X-RestLi-Method",
+										"value": "BATCH_CREATE",
+										"type": "text"
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/posts?ids=List({encoded ugcPostUrn},{encoded ugcPostUrn})",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "ids",
+											"value": "List({encoded ugcPostUrn},{encoded ugcPostUrn})"
+										}
+									]
+								},
+								"description": "Multiple posts can be retrieved and viewed in a single API call by passing in multiple UGC Posts or share URNs into the `ids` parameter. The UGC Post URNs should be passed in `List` format and should be encoded as shown in the examples below. Note that the `,` in the `List` separating each URN does not need to be encoded."
+							},
+							"response": []
+						},
+						{
+							"name": "Find post by Account",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/posts?dscAdAccount={encode dscAdAccount}&q=dscAdAccount",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "dscAdAccount",
+											"value": "{encode dscAdAccount}"
+										},
+										{
+											"key": "q",
+											"value": "dscAdAccount"
+										}
+									]
+								},
+								"description": "You can retrieve all posts with the specific Sponsored Account and the content types with the following parameters:"
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"patch\": {\n    \"$set\": {\n      \"commentary\": \"Update to the post\",\n      \"contentCallToActionLabel\": \"LEARN_MORE\"\n    }\n  }\n}\n"
+								},
+								"url": {
+									"raw": "https://{{baseUrl}}/posts/{shared ID}/{ugcPosts ID}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts",
+										"{shared ID}",
+										"{ugcPosts ID}"
+									]
+								},
+								"description": "The following `posts` field are available to update. Refer to [Schema](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/community-management/shares/posts-api?view=li-lms-2022-08&tabs=http#post-schema) for complete field details.\n\n| Field | Description |\n| --- | --- |\n| commentary | String |\n| contentCallToActionLabel | contentCallToActionLabel text |\n| contentLandingPage | URL of the landing page |\n| reshareContext |  |\n| lifecycleState |  |\n| adContext | \\*   dscName: Update the name of the sponsored content<br>\\*   dscStatus: Update the status of the sponsored content |"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Post",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "X-Restli-Protocol-Version",
+										"value": "2.0.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/posts/{encoded ugcPostUrn|shareUrn}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts",
+										"{encoded ugcPostUrn|shareUrn}"
+									]
+								},
+								"description": "Post deletions are idempotent. Deletion requests for a previously deleted UGC Post will return a `204` code - No Content.\n\n####"
+							},
+							"response": []
+						}
+					],
+					"description": "The Posts API facilities the creation and retrieval of organic and sponsored posts."
+				},
+				{
+					"name": "Conversation Ad",
+					"item": [
+						{
+							"name": "Sponsored Conversations",
+							"item": [
+								{
+									"name": "Create a Sponsored Conversation",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											},
+											{
+												"key": "X-Restli-Protocol-Version",
+												"value": "2.0.0",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{insert_token}}",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds"
+											]
+										},
+										"description": "Successful response will have Status `201 Created` and the ID in the `x-linkedin-id` response header. For example,`urn:li:sponsoredConversation:164380864`"
+									},
+									"response": []
+								},
+								{
+									"name": "Get a Sponsored Conversation",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{insert_token}}",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "X-Restli-Protocol-Version",
+												"value": "2.0.0",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds/{conversationUrn}",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds",
+												"{conversationUrn}"
+											]
+										},
+										"description": "#### Sample Response\n\nJSONCopy\n\n```\n{\n  \"id\": \"urn:li:sponsoredConversation:185204\",\n  \"parentAccount\": \"urn:li:sponsoredAccount:520866471\"\n}\n\n```"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Multiple Sponsored Conversations",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{insert_token}}",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "X-Restli-Protocol-Version",
+												"value": "2.0.0",
+												"type": "text"
+											},
+											{
+												"key": "X-RestLi-Method",
+												"value": "BATCH_GET",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds?ids=List({conversation-urn1},{conversation-urn2})'",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds"
+											],
+											"query": [
+												{
+													"key": "ids",
+													"value": "List({conversation-urn1},{conversation-urn2})'"
+												}
+											]
+										},
+										"description": "Makes a BATCH_GET request to let a list of conversations that are created.\n\n#### Sample Response\n\nJSONCopy\n\n```\n{\n    \"statuses\": {\n        \"urn:li:sponsoredConversation:704255\": 200,\n        \"urn:li:sponsoredConversation:703695\": 200\n    },\n    \"results\": {\n        \"urn:li:sponsoredConversation:704255\": \n         {\n            \"id\": \"urn:li:sponsoredConversation:704255\",\n            \"parentAccount\": \"urn:li:sponsoredAccount:520866471\"\n            \n        },\n        \"urn:li:sponsoredConversation:703695\": \n        {\n            \"id\": \"urn:li:sponsoredConversation:703695\",\n            \"parentAccount\": \"urn:li:sponsoredAccount:520866471\",\n        }\n    },\n    \"errors\": {}\n}\n```"
+									},
+									"response": []
+								},
+								{
+									"name": "Update a Sponsored Conversation",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{insert_token}}",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											},
+											{
+												"key": "X-Restli-Protocol-Version",
+												"value": "2.0.0",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"patch\": {\n     \"$set\": {\n        \"firstMessageContent\": \"urn:li:sponsoredMessageContent:(urn:li:sponsoredConversation:185204:14253)”\n     }\n  } \n}\n"
+										},
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds/{conversationUrn}",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds",
+												"{conversationUrn}"
+											]
+										},
+										"description": "In the following example, the `firstMessageContent` field is changed to point to the first message of the conversation."
+									},
+									"response": []
+								}
+							],
+							"description": "Linkedin is introducing its next generation of APIs to create and manage Conversation Ads, enabling advertisers to better deliver automated messages to a targeted LinkedIn member's inbox. This API replaces the previous [/sponsoredConversations](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/ads/advertising-targeting/create-and-manage-conversation-ads?view=li-lms-2022-08) API."
+						},
+						{
+							"name": "Sponsored Message Contents",
+							"item": [
+								{
+									"name": "Create Sponsored Message Content",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{insert_token}}",
+												"type": "text"
+											},
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"bodySource\": {\n     \"text\": \"test message\"\n  }\n}\n\n"
+										},
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds/{conversationAdsId}/sponsoredMessageContents",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds",
+												"{conversationAdsId}",
+												"sponsoredMessageContents"
+											]
+										},
+										"description": "A successful response returns a `201 Created` HTTP status code and the ID in the `x-linkedin-id response` header, e.g. `\"urn:li:sponsoredMessageContent:(urn:li:sponsoredConversation:186604,14277)\"`."
+									},
+									"response": []
+								},
+								{
+									"name": "Get Sponsored Message Content",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{insert_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents/{messageUrn}",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds",
+												"{conversationUrn}",
+												"sponsoredMessageContents",
+												"{messageUrn}"
+											]
+										},
+										"description": "Retrieves just a single message content from all the conversations in a conversation Ad."
+									},
+									"response": []
+								},
+								{
+									"name": "Get All Sponsored Message Content",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{insert_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds",
+												"{conversationUrn}",
+												"sponsoredMessageContents"
+											]
+										},
+										"description": "Retrieves just all the message contents from all the conversations in a conversation Ad."
+									},
+									"response": []
+								},
+								{
+									"name": "Update Sponsored Message Content",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{insert_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"patch\": {\n    \"$set\": {\n      \"bodySource\": {\n         “text”: “New updated text”\n      }\n    }\n  }\n}\n"
+										},
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents/{messageUrn}",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds",
+												"{conversationUrn}",
+												"sponsoredMessageContents",
+												"{messageUrn}"
+											]
+										},
+										"description": "Updates the message contents from all the conversations in a conversation Ad."
+									},
+									"response": []
+								},
+								{
+									"name": "Batch create Sponsored Message Content",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{insert_token}}",
+												"type": "text"
+											},
+											{
+												"key": "X-RestLi-Method",
+												"value": "BATCH_CREATE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"elements\": [ {\n              \"bodySource\": {\n         \"leadGenerationForm\": \"urn:li:adForm:434835\"\n       },\n               \"nextAction\":{\n                  \"options\":[\n                    {\n                        \"replyType\": \"LEAD_GENERATION_THANK_YOU\",\n                        \"optionText\": \"Visit website\"\n                    },\n                    {\n                        \"replyType\": \"SIMPLE_REPLY\",\n                                                \"nextContent\": \"urn:li:sponsoredMessageContent:(urn:li:sponsoredConversation:186604,14253)\",\n                        \"optionText\": \"Simple reply\"\n                    },\n                    {\n                        \"replyType\": \"EXTERNAL_WEBSITE\",\n                        \"optionText\": \"Visit website\",\n                        \"landingPage\": \"http://www.linkedin.com\"\n                    }\n                  ]\n               }\n        },{\n            \"bodySource\": {\n        \"text\": \"Sample text\"\n      },\n             \"nextAction\":{\n                  \"options\":[\n                    {\n                        \"replyType\": \"EXTERNAL_WEBSITE\",\n                        \"optionText\": \"Other website\",\n                        \"landingPage\": \"http://www.microsoft.com\"\n                    }\n                  ]\n               }\n\n        }]\n}\n\n"
+										},
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds/{conversationAdsId}/sponsoredMessageContents",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds",
+												"{conversationAdsId}",
+												"sponsoredMessageContents"
+											]
+										},
+										"description": "Creates Sponsored Message Content in Batches."
+									},
+									"response": []
+								},
+								{
+									"name": "Batch get Sponsored Message Content",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{insert_token}}",
+												"type": "text"
+											},
+											{
+												"key": "X-RestLi-Method",
+												"value": "BATCH_GET",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents?ids=List({message-urn1},{message-urn2})",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds",
+												"{conversationUrn}",
+												"sponsoredMessageContents"
+											],
+											"query": [
+												{
+													"key": "ids",
+													"value": "List({message-urn1},{message-urn2})"
+												}
+											]
+										},
+										"description": "Retrieves Sponsored Message Content in Batches."
+									},
+									"response": []
+								},
+								{
+									"name": "Batch update Sponsored Message Content",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "'Authorization",
+												"value": "{{insert_token}}",
+												"type": "text"
+											},
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											},
+											{
+												"key": "X-RestLi-Method",
+												"value": "BATCH_UPDATE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n       \"entities\": {\n        \"urn:li:sponsoredMessageContent:(urn_sponsoredConversation:sp1,sp2)\": {\n              \"patch\": {\n                  \"$set\": {\n                      \"bodySource\": {\n                         “text”: “New updated text”\n                      }\n                   }\n                }\n    },\n         \"urn:li:sponsoredMessageContent:(urn_sponsoredConversation:sp1,sp2)\": {\n              \"patch\": {\n                  \"$set\": {\n                      \"bodySource\": {\n                         “text”: “New updated text2”\n                      }\n                   }\n                }\n    }\n    }\n}\n\n"
+										},
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents?ids=List({message-urn1},{message-urn2})",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds",
+												"{conversationUrn}",
+												"sponsoredMessageContents"
+											],
+											"query": [
+												{
+													"key": "ids",
+													"value": "List({message-urn1},{message-urn2})"
+												}
+											]
+										},
+										"description": "Updates Sponsored Message Content in Batches."
+									},
+									"response": []
+								},
+								{
+									"name": "Batch delete Sponsored Message Content",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{insert_token}}",
+												"type": "text"
+											},
+											{
+												"key": "LinkedIn-Version",
+												"value": "{{insert_version}}",
+												"type": "text"
+											},
+											{
+												"key": "X-RestLi-Method",
+												"value": "BATCH_DELETE",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents?ids=List({message-urn1},{message-urn2})'",
+											"protocol": "https",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"conversationAds",
+												"{conversationUrn}",
+												"sponsoredMessageContents"
+											],
+											"query": [
+												{
+													"key": "ids",
+													"value": "List({message-urn1},{message-urn2})'"
+												}
+											]
+										},
+										"description": "Deletes Sponsored Message Content in Batches."
+									},
+									"response": []
+								}
+							],
+							"description": "Within our API, Conversation Ads are represented by the Sponsored Conversation entity. Sponsored Conversations are composed of Sponsored Message Content."
+						}
+					],
+					"description": "A Conversation Ad is a LinkedIn ad format that allows advertisers to deliver pre-determined messages to an inbox of a targeted LinkedIn member. It provides a chat-like experience between both the member and the advertiser. The Conversation Ads API allows advertisers to deliver customizable, branded messages directly to members' LinkedIn messaging inboxes."
+				},
+				{
+					"name": "Dynamic Follower Ad",
+					"item": [
+						{
+							"name": "Create a Dynamic Follower Ad",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\": {\n     \"follow\": {\n      \"organizationName\": \"Test Company Name\",\n      \"logo\": \"{{urn_image}}\",\n      \"headline\": {\n          \"preApproved\": \"GROW_YOUR_BUSINESS_INSIGHTS\"\n      },\n      \"description\": {\n          \"preApproved\": \"GET_LATEST_JOBS_AND_INDUSTRY_NEWS\"\n      },\n      \"callToAction\": \"VISIT_ORGANIZATION_COMPANY_PAGE\",\n      \"showMemberProfilePhoto\": true\n     }\n    },\n    \"campaign\": \"urn:li:sponsoredCampaign:190492324\",\n    \"intendedStatus\": \"DRAFT\"\n}\n"
+								},
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives"
+									]
+								},
+								"description": "A successful response returns a `201 Created HTTP` status code and the ID in the `x-linkedin-id` response header. For example, `urn:li:sponsoredCreative:164380864`\n\n##"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a Dynamic Follower Ad",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives",
+										"{sponsoredCreative-urn}"
+									]
+								},
+								"description": "Retrieves a dynamic follower ad after passing an urn.\n\nA successful response returns a `HTTP 200` status code.\n\n##"
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Dynamic Follower Ad",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"patch\": {\n          \"$set\": {\n            \"content\": {\n              \"follow\": {\n                  \"organizationName\": \"Test Company Name\",\n                  \"logo\": \"{{urn_image}}\",\n                  \"headline\": {\n                      \"preApproved\": \"MEMBER_KEEP_UP_WITH_LATEST_INSIGHTS\"\n                  },\n                  \"description\": {\n                      \"custom\": \"custom_description\"\n                  },\n                  \"callToAction\": \"VISIT_ORGANIZATION_COMPANY_PAGE\",\n                  \"showMemberProfilePhoto\": true\n              }\n            }\n          }\n   }\n}\n\n"
+								},
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives",
+										"{sponsoredCreative-urn}"
+									]
+								},
+								"description": "Updates a dynamic follower ad after passing an urn.\n\nA successful response returns a `204 No Content` HTTP status code.\n\n##   \n\n##"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Dynamic Follower Ad",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives",
+										"{sponsoredCreative-urn}"
+									]
+								},
+								"description": "Updates a dynamic follower ad after passing an urn.\n\nA successful response returns a `204 No Content`.\n\n##"
+							},
+							"response": []
+						}
+					],
+					"description": "Linkedin is introducing its next generation of APIs for the creation and management of Dynamic Follower Ads.\n\nThis ad format replaces the previous [/adCreativesV2](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/ads/account-structure/create-and-manage-creatives?view=li-lms-2022-08#create-a-dynamic-follower-ad) ad format for follower ads."
+				},
+				{
+					"name": "Spotlight Ad",
+					"item": [
+						{
+							"name": "Create a Dynamic Spotlight Ad",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\": {\n        \"spotlight\": {\n            \"callToAction\": \"Join Us Now\",\n            \"description\": \"Check out this demo\",\n            \"headline\": \"Spotlight Ad Demo\",\n            \"landingPage\": \"http://www.linkedin.com\",\n            \"logo\": \"urn:li:image:abc\",\n            \"organizationName\": \"LinkedIn Demo\",\n            \"showMemberProfilePhoto\": true\n        }\n     },\n     \"campaign\": \"urn:li:sponsoredCampaign:123\",\n     \"intendedStatus\": \"ACTIVE\"\n}\n"
+								},
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives"
+									]
+								},
+								"description": "Creates a Dynamic Spotlight Ad Creative.\n\nA successful response returns a `201 Created HTTP` status code and the ID in the `x-linkedin-id` response header. For example, `urn:li:sponsoredCreative:123456789`\n\n##"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a Dynamic Spotlight Ad",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "'Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives",
+										"{sponsoredCreative-urn}"
+									]
+								},
+								"description": "Retrives a Dynamic Spotlight Ad.\n\n#### Sample Response\n\nJSONCopy\n\n```\n{\n    \"servingHoldReasons\": [\n        \"UNDER_REVIEW\",\n        \"CAMPAIGN_STOPPED\"\n    ],\n    \"lastModifiedAt\": 1648512200000,\n    \"lastModifiedBy\": \"urn:li:member:123\",\n    \"content\": {\n        \"spotlight\": {\n            \"organizationName\": \"LinkedIn Demo\",\n            \"showMemberProfilePhoto\": true,\n            \"landingPage\": \"http://linkedin.com\",\n            \"description\": \"Check out this demo\",\n            \"logo\": \"urn:li:image:abc\",\n            \"headline\": \"Spotlight Ad Demo\",\n            \"callToAction\": \"Join Us Now\"\n        }\n    },\n    \"createdAt\": 1648512200000,\n    \"createdBy\": \"urn:li:member:123\",\n    \"isTest\": false,\n    \"review\": {\n        \"status\": \"PENDING\"\n    },\n    \"isServing\": false,\n    \"campaign\": \"urn:li:sponsoredCampaign:123\",\n    \"id\": \"urn:li:sponsoredCreative:123456789\",\n    \"intendedStatus\": \"ACTIVE\",\n    \"account\": \"urn:li:sponsoredAccount:123\"\n}\n```\n\n##"
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Dynamic Spotlight Ad",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"patch\": {\n        \"$set\": {\n            \"content\": {\n                \"spotlight\": {\n        \"callToAction\": \"New Action\",\n        \"description\": \"New Description\",\n        \"headline\": \"New Headline\",\n        \"landingPage\": \"http://example.com\",                       \n                    \"organizationName\": \"New Organization Name\",\n                    \"logo\": \"urn:li:image:def\",\n\t        \"showMemberProfilePhoto\": false\n                }\n            }\n        }\n    }\n}\n"
+								},
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives",
+										"{sponsoredCreative-urn}"
+									]
+								},
+								"description": "## Update a Dynamic Spotlight Ad Creative\n\n\\*   [http](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/ads/advertising-targeting/version/spotlight-ads?view=li-lms-2022-08&tabs=http#tabpanel_3_http)\n\\*   [curl](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/ads/advertising-targeting/version/spotlight-ads?view=li-lms-2022-08&tabs=http#tabpanel_3_curl)\n    \n\nHTTPCopy\n\n```\nPOST https://api.linkedin.com/rest/creatives/{sponsoredCreative-urn}\n\n```\n\nJSONCopy\n\n```\n{\n    \"patch\": {\n        \"$set\": {\n            \"content\": {\n                \"spotlight\": {\n                    \"callToAction\": \"New Action\",\n                    \"description\": \"New Description\",\n                    \"headline\": \"New Headline\",\n                    \"landingPage\": \"http://example.com\",                       \n                    \"organizationName\": \"New Organization Name\",\n                    \"logo\": \"urn:li:image:def\",\n                    \"showMemberProfilePhoto\": false\n                }\n            }\n        }\n    }\n}\n\n```\n\nA successful response returns a `204 No Content`."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Dynamic Spotlight Ad",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "LinkedIn-Version",
+										"value": "{{insert_version}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{insert_token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+									"protocol": "https",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"creatives",
+										"{sponsoredCreative-urn}"
+									]
+								},
+								"description": "## Delete a Dynamic Spotlight Ad Creative\n\n\\*   [http](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/ads/advertising-targeting/version/spotlight-ads?view=li-lms-2022-08&tabs=http#tabpanel_4_http)\n\\*   [curl](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/ads/advertising-targeting/version/spotlight-ads?view=li-lms-2022-08&tabs=http#tabpanel_4_curl)\n    \n\nHTTPCopy\n\n```\nDELETE https://api.linkedin.com/rest/creatives/{sponsoredCreative-urn}\n\n```\n\nA successful response returns a `204 No Content`."
+							},
+							"response": []
+						}
+					],
+					"description": "Spotlight Ads allow you to showcase your product, service, event, content, and more. Upon clicking your Ad, you navigate to the website or landing page of your choice. Learn more about [Spotlight Ads](https://www.linkedin.com/help/lms/answer/a420806).\n\n##"
+				},
+				{
+					"name": "Document Ad",
+					"item": [
+						{
+							"name": "Upload the Document file (select a document file in the Body for postman to use)",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{document_uploadurl}}",
+									"host": [
+										"{{document_uploadurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Initialize Document Upload",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/documents?action=initializeUpload",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"documents"
+									],
+									"query": [
+										{
+											"key": "action",
+											"value": "initializeUpload"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single document",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}//documents/{{document_asset_id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"",
+										"documents",
+										"{{document_asset_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get multiple documents",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/rest/images?ids=List({{document_urn1}},{{document_urn2}})",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"rest",
+										"images"
+									],
+									"query": [
+										{
+											"key": "ids",
+											"value": "List({{document_urn1}},{{document_urn2}})"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create document content",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"author\": \"urn:li:organization:{{organization_id}}\",\n    \"commentary\": \"test strings!\",\n    \"visibility\": \"PUBLIC\",\n    \"distribution\": {\n        \"feedDistribution\": \"MAIN_FEED\",\n        \"targetEntities\": [],\n        \"thirdPartyDistributionChannels\": []\n    },\n    \"content\": {\n        \"media\": {\n            \"title\":\"Example.pdf\",\n            \"id\": \"urn:li:document:{{document_asset_id}}\"\n        }\n    },\n    \"lifecycleState\": \"PUBLISHED\",\n    \"isReshareDisabledByAuthor\": false\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/posts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get document content",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch multiple document content",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/posts?ids=List({encoded postId},{encoded postId})",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "ids",
+											"value": "List({encoded postId},{encoded postId})"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "The schemas for the new APIs are more simplified and consistent when compared to previous creative APIs. We recommend that you not map to previous API schemas (e.g., Assets, ugcPosts, and others) as LinkedIn is working towards onboarding for all types of ad formats."
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "r_organization_social,rw_organization_admin,w_organization_social,rw_ads r_ads",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{client_id}}",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://www.linkedin.com/oauth/v2/accessToken",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://www.linkedin.com/oauth/v2/authorization",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "content-api-token",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.headers.add({",
+					"  key: 'User-Agent',",
+					"  value: 'contentapi-linkedin-postman-versioning'",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
