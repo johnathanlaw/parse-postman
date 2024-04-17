@@ -1,4 +1,5 @@
 const POSTMAN_FILE_EXTENSION = '.postman_collection.json';
+let variableSeen = false;
 
 function processItem(collectionName, items) {
     /*
@@ -24,6 +25,13 @@ function processItem(collectionName, items) {
             const endpointName = item.name;
             const endpointMethod = item.request.method;
             const endpointURL = item.request.url.raw;
+
+            // Variables are denoted like so, {{var}}
+            if (endpointURL.includes('{{'))
+            {
+                console.log(`Variable seen in endpoint, ${endpointName}`);
+                variableSeen = true;
+            }
 
             const endpoint =
             {
@@ -55,6 +63,7 @@ function readPostmanFile(file) {
             return;
         }
 
+        variableSeen = false;
         const data = JSON.parse(event.target.result);
         const collectionName = data.info.name;
 
@@ -95,5 +104,5 @@ function createDownloadLink(file) {
     a.download = file.filename;
     a.innerHTML = file.filename;
 
-    document.getElementById('download').appendChild(a);
+    document.getElementById('download').replaceChildren(a);
 }

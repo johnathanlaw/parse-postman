@@ -1,0 +1,1199 @@
+{
+	"info": {
+		"_postman_id": "3e17a028-d6ca-4b07-b36c-8cda69792dd5",
+		"name": "GoCardless HelperOnly",
+		"description": "# 👋 Introduction\n\nDocumentation for how to use this collection, including a Quickstart guide, is available on the [GoCardless Developer Docs](https://developer.gocardless.com/getting-started/introduction).\n\nDetailed documentation for GoCardless API endpoints is at the [GoCardless API reference guide](https://developer.gocardless.com/api-reference/).\n\n## 📝 Prerequisites\n\n[Postman](https://www.getpostman.com/downloads/)  \n[GoCardless Account](https://manage-sandbox.gocardless.com/)\n\nBefore you begin, set up your free GoCardless Sandbox account. Here, you can create an access token to add to your forked Postman collection.\n\n## 🏃 Getting Started\n\n1\\. Create a GoCardless Sandbox account [here](https://manage-sandbox.gocardless.com/sign-up): the sandbox is our dedicated testing environment where you can build and test your integration without touching real money.\n\n2\\. Go to [Developers &gt; Create &gt; Access Token](https://manage-sandbox.gocardless.com/developers/access-tokens/create) to generate an API access token. Give it a memorable name, with read-write access.\n\n<img src=\"https://content.pstmn.io/0dfaf33e-fbff-4ba9-836a-3ba2da42734f/MjAyMy4wNy4yMSBhdCAxNC40Ny4wOEAyeC5wbmc=\" alt=\"Creating%20a%20new%20access%20token\" width=\"270\" height=\"163\">\n\n3\\. [Fork](https://www.postman.com/gocardlessapi/workspace/gocardless-api/collection/22460459-bae9db02-4aec-428e-bbe4-c36d6d199fd0/fork?origin=tab) the collection into Postman to synchronize with future updates.\n\n<img src=\"https://content.pstmn.io/6fe085d7-eee3-4af4-9090-3aa7e15a9e09/MjAyMy4wMS4xNyBhdCAxNi4xOS40M0AyeC5wbmc=\" width=\"422\" height=\"458\">\n\n4\\. Set up a [Postman Environment](https://learning.postman.com/docs/sending-requests/managing-environments/) for the GoCardless API collection by navigating to Environments and selecting the + icon to create a new environment.\n\n<img src=\"https://content.pstmn.io/f6aa7ce1-78d4-4042-becd-25331e63739d/aW1hZ2UucG5n\" alt=\"Creating%20a%20new%20Environment%20to%20store%20collection%20data\" height=\"375\" width=\"330\">\n\n5\\. Navigate to an API call you'd like to test to save your key into the collection:\n\n- With an API call open, click into \"Authorization\"\n    \n- Expand the section\n    \n- Paste in Copy the access token from _step 2_.\n    \n- \"Save authorization to collection\" with the link\n    \n\n<img src=\"https://content.pstmn.io/68f58aae-7057-44ec-b877-62d23dac4205/aW1hZ2UucG5n\" alt=\"Save%20token%20to%20your%20Postman%20collection%20to%20execute%20calls\" width=\"1608\" height=\"746\">\n\n# Things to Note\n\n1. There are often additional URL parameters or various request bodies that can be passed, we recommended going through our API Developer Guide [here](https://developer.gocardless.com/api-reference/#core-endpoints) and amending the requests as necessary.\n    \n2. The Bank Account field requirements will vary depending on the scheme and payment method - please update the relevant requests accordingly. See more info [here](https://developer.gocardless.com/api-reference/#appendix-local-bank-details).\n3. Our requests are chained together automatically via Environment variables, so there is no need to copy & paste IDs across requests.\n4. Enjoy! 🥳",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31384148"
+	},
+	"item": [
+		{
+			"name": "Helper Endpoints",
+			"item": [
+				{
+					"name": "Create a Mandate PDF",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"mandate_pdfs\": {\n    \"links\": {\n      \"mandate\": \"{{mandate}}\"\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/mandate_pdfs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"mandate_pdfs"
+							]
+						},
+						"description": "Mandate PDFs allow you to easily display scheme-rules compliant Direct Debit mandates to your customers.\n\nGenerates a PDF mandate and returns its temporary URL.\n\n[Create a mandate PDF API Docs](https://developer.gocardless.com/api-reference/#helper-endpoints-mandate-pdfs)"
+					},
+					"response": [
+						{
+							"name": "🇺🇸 USD Create a Mandate PDF",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mandate_pdfs\": {\n        \"scheme\": \"ach\",\n        \"account_holder_name\": \"{{$randomBankAccountName}}\",\n        \"account_number\": \"2715500356\",\n        \"bank_code\": \"026073150\",\n        \"account_type\": \"checking\",\n        \"payer_ip_address\": \"1.1.1.1.1\",\n        \"signature_date\": \"2023-12-31\",\n        \"subscription_amount\": \"5000\",\n        \"subscription_frequency\": \"monthly\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/mandate_pdfs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"mandate_pdfs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Wed, 13 Mar 2024 15:52:11 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"d3f8063b40403028a1f9406c04fef6d9\""
+								},
+								{
+									"key": "x-request-id",
+									"value": "23BF1970858A_0A1489B61F92_65F1CBAB_04210001"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31556926; includeSubDomains; preload"
+								},
+								{
+									"key": "vary",
+									"value": "Origin,Accept-Encoding"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "ratelimit-limit",
+									"value": "1600"
+								},
+								{
+									"key": "ratelimit-remaining",
+									"value": "1599"
+								},
+								{
+									"key": "ratelimit-reset",
+									"value": "Wed, 13 Mar 2024 15:53:00 GMT"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mandate_pdfs\": {\n        \"url\": \"https://mandate-previews-sandbox.gocardless.com/?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..hPiqF7ie9_OItqdA.MQyZDQ5HynEAo3qYQM_pmFtz2cyUUc42BZxvTkf_gp99tjwemvHTwc_WPPDcJjNfqbqMa2QreNQxBPqoQg9GQKX-dRGMNv-yrE_ZsfQY31JNPe5r5ApHj5YB2q7Oc40CmuT0l_ztmVq4g8CxaJt9us9VXCp4W0fenFzkwGUS0McUrHXqEvrcywyDzEjieOU01RX5bv7jmo2blpz64PRz5ovT5Wfqcxuyz9Ij3EYyB50RUxP9Vsb_L9hz0JI6GS5JcNcun0QP4P-tHMt8Yt_RWdosujr4VK2Sn3U9wZLKNZObM_dO10yzX-Xe60aUyM9f2bDKe9iFzXtfaIho9dRVtL2CuWyFH8KBQqDH1K3Fs4jHPN0YmGj8yLAsjfkBlaPrT5MAHMUGXu6UWdJficS0zOSdFx6U51ohTM7H3EoZWOzHc9-iyaEEqUjSe3AkSoasRGokStQA-dGP7xR00LoUf8Z02UCsuNwHXgHPl4nKQWUvl-m2SSpK0em6erkUID_XO9tcaMfmQ5CQGpto_oEYPekgeeIqu_si5GubzxSprBG2hCf1olt2Ke6tcCVnt-hC49t0kR1nhn8j_UV09aYub0DQ-Ef9Sqb38jhX4GCw_Bs1uaTdJJbOgJ8D-SHyIdffeZf2UC6s8ANi6HFSj0dE7qga5PoTn9a0haapxhi4W_SjR2z8x4SOVumMhif7-TYHwQPvv0dihB_D4xjvfntP4ejJ2NwzRjQ_NxWzJxyPOCF1Lp9xZn4pyWeXjGFhrrAjp_GwP-fDVFCi040955VNPrhCCBR_H2BEmcoBD9iOS4JX7Y8cLCRfw4ssdcDvIexLguronfu2t1l1ghtiH-0MH7I7kBk6jhiDlTVBdjXZTY9C4m7co8LAS9qJdc6kL3lqNC90v6WZElcFzeRgdn8hJSvj2OiRgzaSvxjtksyY9mGrzuUy6YlWxY-C_Ujg0p1_liBoGJMBTx7kb1MCRtQCdHUxV2Wy-MKc3X05amEbEvXUbxJ7wCmQ9Q3HNf75B-eUuGweuaBk_9SUUAFPXKGuh0zvmiRoVDLEoid0V3BOwjIVUvhJqK48QIZtrfR1WwHoVg_dexpyb43imhHnMxExMV3kOzi0KE0CAnBKnNQZUuMty0l6X_WUfVDiUxjzC6OdsEGQCoGZftYf9O1nyBtVB40kypCike1cKFK2GGDxkv-rrDvuqNDcEGUBayuOPpKVNiREu_-IrNuhIpjpyV8_UMMzKpZhVkKHuecQj9v9puODX3c9fNtHeY3TQrRvbcSdW5NoZac4V2XB7lsLPF9FboANgHwl94hZMuHhyttey8psB-p8xuF2WZpMmN7jJQ5cPVOtr-ga91uORJ2AJrg-Tzh2cIR9gaMzLO91l4pPqrOVPES734ZdRzDHFhB_-llqj_JKRG12UW1ljDbvulxQuOsAyXs0NOBhFvjr-UNkhl0BinoVc4hXkwg49x_7Tr73VCvuxapo_cMrmHAMOY_2qBNL8c3_0BxWhQfTYIuP0rmE1qpiW7p2yRxqvw.Lb4vf7hylvWBiuXj-fx7nQ\",\n        \"expires_at\": \"2024-03-13T16:02:11.373Z\"\n    }\n}"
+						},
+						{
+							"name": "🇬🇧 GBP Create a Mandate PDF",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mandate_pdfs\": {\n        \"scheme\": \"bacs\",\n        \"account_holder_name\": \"{{$randomBankAccountName}}\",\n        \"account_number\": \"55779911\",\n        \"branch_code\": \"200000\",\n        \"mandate_reference\": \"abc8364\",\n        \"signature_date\": \"2023-12-31\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/mandate_pdfs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"mandate_pdfs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 22 Mar 2024 21:38:40 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"7c12753ddcc3f4446e0fc8e6d468e2b9\""
+								},
+								{
+									"key": "x-request-id",
+									"value": "23BF0299DCFA_0A146BFB1F92_65FDFA60_D5690001"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31556926; includeSubDomains; preload"
+								},
+								{
+									"key": "vary",
+									"value": "Origin,Accept-Encoding"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "ratelimit-limit",
+									"value": "1600"
+								},
+								{
+									"key": "ratelimit-remaining",
+									"value": "1599"
+								},
+								{
+									"key": "ratelimit-reset",
+									"value": "Fri, 22 Mar 2024 21:39:00 GMT"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mandate_pdfs\": {\n        \"url\": \"https://mandate-previews-sandbox.gocardless.com/?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..pAnkqAu2-pUbAXln.w2cF3FLN7BwQV4OzhMzxlhVSX8F-oDJ8HBAijN-VN-iI_e8IcEnk_Y39iXUQYjM0RsAMZoFQWTFRScCJvzXEZni6jpVRO-bKMDJbxAgTMf8NvEV1GraKUU1y31Uq5x2Wx-njX8_AWdL0omKgBsEYGixsBAkE0UjzEMJI_hN1bmSsNWlUAwCNU899ZPFvNCJJOc1Bf28KoEb5COC9n0Wd04yg3uaeBEa1oJFfXuA1xMw1hP9Qcjz15g1IG1Q4Wtg1j-JAl4iZPiFuWWyMhgFTMG4wBjEUnGEcwuDI-R-7-cK0pMuruN7pTnF094eHT4n1lNIPbXLfTy-ZKGjRV--NsikH_ZK6ig35B5-sF-QUGD_-dkq8plRv-2LUGcAPFt6RPiTuvG8aTW38htlSDqS6Bx34to8Df_XFNe-7WCiDBCSzUQxvhpnOIFcYdencaDqgbyzC_iIxbQi-vNYX8VB9uX_zooO4xrK5IfQqvzCw9B9Ve8EhEeCR7081foVL8u-X2j3fhjXSxvuH85EdRxO5zJd_F17wCFwkNPHUmrMMan96nSUUMIygRLT28FtFx7rca0qDtEWkyQUu6cLd_iqy7WISCEIVP6hteHwpnULAiRWdm2CJWiKBz-Ev8Ho_yQmuPR5k_ngfVHNU6drnXcam3ebEcOBPPVY_0nDfSJ3fW8UairMJ-xRGyRIEIrPqxNueOqmnhMP-G9eeSAfejFteI0mT5QZESnq99--1ShkuFuK5KMr3njrSlbEHMLJqh5URYpzOQO2i5j3fBfxBMcE8LFhF5l2DWwq35eXJCCf-c1VC0KiNeKifFv6prOmUeIK4dvRoCCgfgcVQNm4Ujs59AyYVNc8ZwynmB-QdOmIEGCRicYNZCSkO-7_AsiL2aqktTmi3-dkOQ-5lgsNwiQVN1N5NXw1vGePzhF04E5Papb-X0HiBrOiAoK-u46UMpdCU4LxTgzkinPqA3Yxh72HDiPm6d8zGPHOPAwyro46EyI9ShaJlg6-hLvTijLLFt1B0kxJ-adqLfxlGzTtnDvW8G5M31nTQ-1SDZkumts0wkvFE2Jish9w-LQPGrWcxZCN0ipySuz4KNMkj5sLeHRJInHP-Qqwi6syIGR3oTTi9SNe8l59CUOECgIzHAzbdhDHKtKuDTZJBqcq2LGZvNTFJHYI4kWV9X3PUB0PHXJOH_at6ET_tm0W1FBFtJPa4iGriiBnCgTr2QeBWiQNJhzLBkhgPzKM_ZZXKTfPE7IDgveMgiNNtIsvDdbNtbWuVb4X_YicGi9wZ18cP323Wgtc8dpjcAPsubwoVh0ExhWs04cG-RkS6W7CB3E86M_WRL_WJeGPmbmAamnEXtD7eyWcakri1M6UfZ0feaqYL242Bnsd0T1epQeL7vVXXeaJlhUVw_7lQTJSb7hmNvLaDZZun44BzI6LTYzXz4d8eEdEiNgM8umpfU4_NPu0ilw5pk_8xhYvRIyJcvjCWwQK0eKsjwxrIYzuEHT2zTwxTyr7qsTATsEblI_1Xps8zTm9hTG31pxNQciAgDgucesUdyqZqMphG8qk_tQtVhhl4ofPy-27mMUBTK57FCAHcdYSHklF_7OuMVpUuXnb-OJkqrZzkKszqdaVfZnAGHyva.9WNnpHnMrov_QMYcpNSspA\",\n        \"expires_at\": \"2024-03-22T21:48:40.871Z\"\n    }\n}"
+						},
+						{
+							"name": "🇪🇺 EUR Create a Mandate PDF",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "fr"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mandate_pdfs\": {\n        \"scheme\": \"sepa_core\",\n        \"account_holder_name\": \"{{$randomBankAccountName}}\",\n        \"iban\": \"FR1420041010050500013M02606\",\n        \"mandate_reference\": \"abc8364\",\n        \"signature_date\": \"2023-12-31\",\n        \"address_line1\": \"{{$randomStreetAddress}}\",\n        \"address_line2\": \"Apt 24\",\n        \"address_line3\": \"PO box\",\n        \"city\": \"{{$randomCity}}\",\n        \"postal_code\": \"75001\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/mandate_pdfs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"mandate_pdfs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 22 Mar 2024 21:39:15 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"7a024f6c5cd982e5cd42ad8d727b3346\""
+								},
+								{
+									"key": "x-request-id",
+									"value": "82D3021790EC_0A14672F1F92_65FDFA83_CCFC0001"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31556926; includeSubDomains; preload"
+								},
+								{
+									"key": "vary",
+									"value": "Origin,Accept-Encoding"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "ratelimit-limit",
+									"value": "1600"
+								},
+								{
+									"key": "ratelimit-remaining",
+									"value": "1599"
+								},
+								{
+									"key": "ratelimit-reset",
+									"value": "Fri, 22 Mar 2024 21:40:00 GMT"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mandate_pdfs\": {\n        \"url\": \"https://mandate-previews-sandbox.gocardless.com/?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..mj3og4d1iXcy4MBH.3N7lN50AAbCYPcNIXBgQ2CYrDuOGo9kTpb1unqoLx820jRxraV_i0_daZOlDuz-a3G8hZ1rNcZ5y2-23TKYXgv-_H_LcTOufJnTC7P-XQo6DNpn78LP3xueyG253S4EppFB-twiJIE3IFeKNOkpxh_nViYjdCVogEAosslNFqAL4LbHwYsNPgOHeZbgY3ydV88zWzlHjDuGgM76jcmV1j_oyvMgjvtoYQhDXwpnGbFwMzFRE1HEX5hlU-DRgi3qf_JEwad-qn0fiKQFoULhnb7WJc58a0Bmg6cb2aeuRBl8QwNEz61YHqHy8TcJtLIyJhM3FqxmztxKGILSiwblgEM0m7_wQ1djsS_cU6zplglgfK72WCVsHaPv5eQ2OIwvHMH9-zNeikCsWcyOWBg2pW0hQWQ8nU4MMDjDlEq13Qq2k7AXhp2-2P6x00uKkNfn0lC9o9LOan1qL2MfDV68kgauYY2CtYmKYj2HMMlJ3e2lkJNP_rxe8Se7W24elDFsIpqeYvz0WrifdlFrS0AK9ru0BZ3p7hm8R8IMs_MKjg22EWIJ_dhWPRpXuZcaXQVwOax_YbhHUgEj7StuyMtUEzj8KHwmjANR2Q5c-yuUIPMACuWXpDy6-aVCvodRdxFizONNzPryXQ7EfYqz-efQhFjt-iF31Z4GuEndoIHXI8ZGZJUmjSfubwIcQZVEWFpeMCILJvoT8lLSNZxNPLihGxgzZjpKLwUlGABfZx3yDoRxUXGC6iWZLMi7TqVQ4Wq-hTNEOvqsosnuUS6S7HUNMjozKaxgDS7FRXE9zguk8TgZ6yNVkRoWrCqSn9R8Td91Y84xcEgP8NZCQu-1nCYbpq9-PFVehVGqDO5PqYW35NSRXThHKlWs7E5mQ_Vz43JSww45b2WeuYFyMXAJdM-EVvFqkpFS-REe9Dv-8a9ZMcHcnlQtILqzQlkIHjvdARO40ysZiACVBxD4DiQ5bUA0z5bDyi2sjGjHlkLT2Y4q89kKPs8VgmxElhPmZQE4d93U8mt0A1x_NIFMrWCThARnP4VOMc_IZ9H8M3BudDT5Sfra94fg1_mQ8sJ3X0xlUu_eua6zHe2F5JBErXfzs9kdAAuFbM9I2YJD1mHeT9bszFzG764f3EAvjzWIyLJ4pINkmUfXPGcScuu5xWSBEJ1KwGFQXQFM407HSTwCRxzaTJITJeRPwtwtkGFREVyPubkV-rmdDY99g9CtlGZvaX7nQ1LHnzqJ4sBQ5eK7wEDUsqpt0gTqCuei8II_CIXOfgRomkMVQeNj1DXevf5VF9X9zh21LEFag224NFlyVGyyGzsu-73hNEqrJrHd82XwFotC-l8bkmIUDQ-OMFjFlMVtTnTgIwcVDNf7pUy1XSf5ZSyohlIyB4GXpreuQNEUlHrxVE6Oy7dGJyBVxuzSXnVGN0-foioccGju1iUcU12PAPxpPzcXacPbQYVf3HqXzZFFi4EKox4sZZqm6mgkJaUKdEZBtrnqzSDba2yCmZz6hJCIAqhASTrt5g-WmZP5kAp1HJB0WeNABv-YYtX7CG1Pr3rnhaYSnhVc8wExVeDEMpw.cN3RvLANf0MWdfBZ4AYsKg\",\n        \"expires_at\": \"2024-03-22T21:49:15.864Z\"\n    }\n}"
+						},
+						{
+							"name": "🇦🇺 AUD Create a Mandate PDF",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mandate_pdfs\": {\n        \"scheme\": \"becs\",\n        \"account_holder_name\": \"{{$randomBankAccountName}}\",\n        \"account_number\": \"012345678\",\n        \"branch_code\": \"082082\",\n        \"signature_date\": \"2023-12-31\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/mandate_pdfs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"mandate_pdfs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 22 Mar 2024 21:39:58 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"b93df849d3f5b77aeeba168663504a2e\""
+								},
+								{
+									"key": "x-request-id",
+									"value": "23BF12DAE11A_0A14932D1F92_65FDFAAE_D36A0001"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31556926; includeSubDomains; preload"
+								},
+								{
+									"key": "vary",
+									"value": "Origin,Accept-Encoding"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "ratelimit-limit",
+									"value": "1600"
+								},
+								{
+									"key": "ratelimit-remaining",
+									"value": "1598"
+								},
+								{
+									"key": "ratelimit-reset",
+									"value": "Fri, 22 Mar 2024 21:40:00 GMT"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mandate_pdfs\": {\n        \"url\": \"https://mandate-previews-sandbox.gocardless.com/?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..6CXll-LLiiucHqQm.PUE3WO4uhpM4qf4PhVrwmiu5BhORrHASE-lxOehIsloajuHHeeMszJJhR2qH5Tgz4NIVyOJt7Q5Qlla88PFRO6M9xFTB7_J8cKGxt9IRxVLSNr5DYQ1XHdIGF9v3Dx0oZ2oWzeEqJHEJOxwFELm8XQTYvrde6Uonx_36L88o9dEOe3Er34RwNskxHSwamNqUXYStSf1yWZndH8hKVo6waXMCfkJy3lmQAuzzWGuOcsXaSgMszBNZ5vbH6JMWtrQTS1Nl0UBC8npoWjbwkbuyhQivLh2HkW9Rtax_GEor90qTs1BPIlFUn4yXg9Yg5lqBp9I1hwNH3z9fP_TWNsVD_L-obuv6dlWepVabTETQ0GUSA4JKJjh3x9JOMfQuVq-Y3ZoGZzh6ekGCuNheblpLcbilRtk4W1KfbEkSV6A6nR3beNcLqofSKCgJPxgtyWRKNSS5dIEW90BDM36SsnDuCdnoncPbiciSpynuk636_jutTPSyoKc9Jn6I4oo3lqwgQSF6bUPZdd0icyLFwemTc5mq0fng3POjBN4SCrsLsAPf7zYsh6DYx94AQOzVyaQd4Y2rNIDbAH2dEVawtJAje_esqX0feoY8qyIiU3sfUjI9GOABesfEhOqYDd2nFgkthZ1XGyxJzPjVRgz4_O_nJTaXpKrcgbTycM837pRIVxhvpGo6PuhDmLtYj_GWLTp8r97PGyNlmBqmw4CzauDXRzLvXSQP9CQ--RRsTbX4he1i2Ho9FpQSPBDTDc4hRyV9u_sPfHM9d7f49Rg2Fz-r0HMEsuiwXFvyGGF39HgtmIY04yfRqA45h233fLDD-QvFTNCujzF1Doqz8nBWucZwjvyT0oz3I5DVjmfKkBbUknjvkZllwmGA_RYLprihWmWfdI5mBCoMerptvYvbagGRNzBbc8K_5oTDR3fYNwsT_Du-CAP5V7yUjVL8LL50BEN5Phj6APm6wEd99WL8zyPAdZIQfMHrJ1WltpRRvqtF5rbkymApHZt1vQEUhk8YQX3Lt5i2iDxokEVYIYY_nlYk3WwZ9cyNUFzbQGtNUN2V1jUjANXGzH4lev2WECOziFgEbn5-urp0eutnautZ9C_YqApjbKvlBqqUZFTqM8tEBqRQ2kW5B5TTqjVIpd9lsNgqWgA6HuCY3fiv0bo3nhcaM-vqOGZ50n3uB0pVyM-idri_JiAQUoFXNBJGY6rVdIGdgmhiikS8WxR8Xdil7NwH9xEBcmghlO3hO9kDzSmC7b8Erhu-fb2O9m7i6q68joNIm1YanJ0iQX4MPXt9yz0Dn6bZEupejII1wOWF_nLynYfLAui-EHH5HUw0YXqGjWdVAg1o0qohsmpBArRY4-gE5q8Ju8w9ZtqsC5EFien2_Kbj-csCt0AiIXtymLoeVvMrls9BYAkJVYRBl38wTgEddsl32MkKxsX5OP-vlJp6usesrJ0.7TccZNXMXZLI2MD8WScuqg\",\n        \"expires_at\": \"2024-03-22T21:49:58.953Z\"\n    }\n}"
+						},
+						{
+							"name": "🇳🇿 NZD Create a Mandate PDF",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mandate_pdfs\": {\n        \"scheme\": \"becs_nz\",\n        \"account_holder_name\": \"{{$randomBankAccountName}}\",\n        \"account_number\": \"0123456-89\",\n        \"bank_code\": \"01\",\n        \"branch_code\": \"0123\",\n        \"signature_date\": \"2023-12-31\",\n        \"address_line1\": \"{{$randomStreetAddress}}\",\n        \"address_line2\": \"Apt 24\",\n        \"city\": \"{{$randomCity}}\",\n        \"postal_code\": \"9746\",\n        \"phone_number\": \"5555555555\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/mandate_pdfs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"mandate_pdfs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 22 Mar 2024 21:40:35 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"562b6e92b578365bec5d514b7c2bcabd\""
+								},
+								{
+									"key": "x-request-id",
+									"value": "23BF13C5BF88_0A146BFB1F92_65FDFAD3_D6D00001"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31556926; includeSubDomains; preload"
+								},
+								{
+									"key": "vary",
+									"value": "Origin,Accept-Encoding"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "ratelimit-limit",
+									"value": "1600"
+								},
+								{
+									"key": "ratelimit-remaining",
+									"value": "1599"
+								},
+								{
+									"key": "ratelimit-reset",
+									"value": "Fri, 22 Mar 2024 21:41:00 GMT"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mandate_pdfs\": {\n        \"url\": \"https://mandate-previews-sandbox.gocardless.com/?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0.._ysNKv0jkAPPuR4s.Bch8cuMnUDsKBimxhSG72AWtGSPFIlPu-mTJtO55t7h1qJuyw0qfVoSFuh9WKxjm3EhEpnm37i8zFZuAeI8QNge-4dbklmhHpPbSo5ZK5Uh7cWsrt46j7BccZ_Or_De76WbKziSXqpW9HWrR5WtuGI2V3tnhHtJErLqUp0Pvkf0a_SdhV9hQNzPRz4sDuD6Ho7W08oxaLw51_N4W_0F0H-qgi_8xMB6VUihQclwHtuobel5dGUDVGdTf3R6gGsp8gwL1mU1KyihReuV4Q8s38c8UsJnxdb81w3kkSjdXzbGIptbtZizz8H-DS-0JGnkwsM2NMNZjaAuJkSHfcDAw5cTTZxjilT2tA_Qnrjdmqx0HDnOMJ0GpJ0fdKl_NfYdS0A1LhA8FBu0DH0_jEFnAoinJS3PcD1wq3JQqSfZVl_Xc91J1A9sEuoolEcGwNGoRUUa8VZup1HWg260yAdFspZ22R52H5QTUn44Ob6Zcc6r5-35FfIS8teEZelLnJt3qrIw44MrAaTl3UPN3GlM189EkaJpn1DGVZjR9YH9uaLjkaKXBduB3XO9R4ozhSiSwOUsURZlOsxvpd3LmjfyhpuQgkShtO08KdvEedNf-z1oTySztOtBNFhTt89Hbto7933p9o6lo2lvhjjvU8B9iCJEOXytxSwsixNdomNGePa_3r2cw1u7jtoqPuMxGuufsmJDFIGo_f_8gjlx2oz2YxY-pNVkp5uI1ktHd1B3qZrDkrX7fyXHqU7Hl2uXPTaAYacEYlxHfS1YM5Jgyo6QYjvWRktHOB_8qqUTe0mA8soF8U7bUYEeAVocn1wip7ir_FR9ap6-KOCWAJK-wzqz1xw05npjHRqM0egWQ9OBITAT0ecaNqcAvXHVsagubcBLM4u611jZmmZrJyQRha2SW08w0pEJWHXjGa-rN39oA9VkQyDokRRYlZcpvrD3o-DTszMeJ-9E4_KoaXQSAkBUctQ9j_2pEArWfHACwAVXlARqDujwG39RJwsxnDrmH3ajvwzo16TfwVZpNpwrbxJk1MiKpVWbX0jg5Wva5JSF6u7V1WsXXvVxeWXqZT37iprCpGUyQ0q229gf8dKjhNI-y59Md8HT7tWMVtxYLgIsHOFMPujHytdVg7d0nailvkJFtT_m8Xe5oAOpD_uWfXpwyD37exwaaBDuBBpslTRKQBVCaIQElPYCjbYhRudcTTCBDIJICBQGO_CuRxk1L5ehdOtBdBkfOAuFlC0F-jDKgZVSkLvAiRfy-rUmhoDzLwX6hWshh8CUOH10lm5SJeKbnmYx40IuJ7rRVu5W_jyZz1amuZOqEuZG-ROvJ6jS0aU_jFhEDrzW4b4BnkWlMuIP774YfXvVFfgBKwjsRjvACFH5eqt_nkMXQEOWy8wzc4EzhtAi_BXiHFiCQLmqdK5UAZDvAp1yKJI1fekgP_WH-b6T7u-2rX_svt-7DlCU6376Gm-w1t2thdw.CGMThq6eJOaa10ZlnggIrw\",\n        \"expires_at\": \"2024-03-22T21:50:35.278Z\"\n    }\n}"
+						},
+						{
+							"name": "🇨🇦 CAD Create a Mandate PDF",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "en"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mandate_pdfs\": {\n        \"scheme\": \"pad\",\n        \"account_holder_name\": \"{{$randomBankAccountName}}\",\n        \"account_number\": \"0000000\",\n        \"bank_code\": \"0003\",\n        \"branch_code\": \"00006\",\n        \"signature_date\": \"2023-12-31\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/mandate_pdfs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"mandate_pdfs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 22 Mar 2024 21:41:11 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"24cf78ea5c551012f7db7c66f6439001\""
+								},
+								{
+									"key": "x-request-id",
+									"value": "82D30216CC12_0A1452171F92_65FDFAF7_CFDA0001"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31556926; includeSubDomains; preload"
+								},
+								{
+									"key": "vary",
+									"value": "Origin,Accept-Encoding"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "ratelimit-limit",
+									"value": "1600"
+								},
+								{
+									"key": "ratelimit-remaining",
+									"value": "1599"
+								},
+								{
+									"key": "ratelimit-reset",
+									"value": "Fri, 22 Mar 2024 21:42:00 GMT"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mandate_pdfs\": {\n        \"url\": \"https://mandate-previews-sandbox.gocardless.com/?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..bDZZ5PBWx_oVNsKQ.Bg426y3SqfyFyGoN0PB1s05CLzkC2NWoxR-KRfThFoG9DKyocX-WdUh8Vwcslrb7auGsA5uUacnPiM_-vXrCDphwQmjIPN6pZIuG7a3DYZPNJY52r6as3zaog3XNPgQ9aUqVO4peZqnnm6EjFBkM6MoiKT74OFDPI1vl0NsJvd9MovIiNhI0S0Zxr41AKU5782pgF4mNHml7OD_45F6_Iyk-9rFP5d8MyfIc0L5dAtbLaiT7QetqdqOLt0_7LXF9bmNktd44jUrCVR4vlVen5uE422rsXH_YTjqjqnTNORhBlVVTluz_92ymmk9PsEPUj49SB_FEyBN_C34L1Z8s_8TkhyRAhqX3y1-Rwh2xsfbsN5qL5yKmTukvYS7lk-tO4w_rxs4NePTnkRI8ErS9QygA6Tzt-QzJ2zWFwX1OEVn3lfcYAYet1XJKCHidu5OmrTMd6_yVol_O6pc-bi7ZU0kHhVEW2nNt_m35WkUy-w2hrLFr1nu3jYJKAXb3BCbKXHvHIfKUkcwhpyXtHr3xImvZPlhvmlEY_9qf1xD8a4_J9gssA5GzQv2Kv2_cM-BAdWjibifhNRb3kcA4QhOLErLIT9SlJIjgQLyGy96putZ1F_PdwJiRLRTf4Bq9wFZMPQyfRPhv3vFyE41fw0u0I4ivPJSjb_xLTfNPPRO0bDvXKKrjk2VdKnzYZPmW0GkDxzGbnfs273BjqRHwSWonepA7z8d9pDeovuWxC88SoI_Tg3HDmWuxH2fqTX8LQV5gNR2OMgdW5p6YTSd--Y4jnUxqmzfc_Ex-MNgHSv7ODSKl-84RV8UaMmDXx79mPeH9uwBSTQjl9Gb-syQljkPUqNwWPzA4ooqO9E4rTpXPbYM2IICjA0hsdPJ5osQAfXB3OL8-Qg9t8fMoO273WVfnjNoQdWWYg8P2PnJKUWcCDPV9NWFy5TjWU3cHy0nXHaKIM2cnoL0__mbJsHgQT3zVg3nwxztIZp1DpRni-D8hDgaKf8w_BlUt4BYt9sfn0ejRGpmK0HsuluxnFUwgTcD15nBKoRu8oxUmMv2wIdicc8PfC_Txr-M8SWQbKUZ6rPL7FeaFH9Bz4M9L-bTLEx9Lj-Lhxiv0INBHBeF_1NZCHEyWv-LIEvR9uN8a41uc3eN_MbqlGq9s1JtimcAlw0jvuOLMN_1nyoIClId-sn2NixQtp_3fZJg6Xqqh_U1_ilEPzSYrROhxB57fSApPWSOgVCJgmJE5Ah_XdnyixCPBGKuR2pImSCh4sSjEa_6jbIKhRMVnlTk8kN6vlhp2keuy_Qih3sIzNb59Ga77uJuLuoUFP38XUVoWa1SXAd0EtGgFcre7zUBv2YW25bCPnlJFzQPhk4c37zU6JP9zxSR_gw__HbUhF2pBJ2TuFi6nPWDjlBawlLtBGW9j3HbdO3dXl8M_Q1EQXJV1nuWnJw.e8ea_u6PFhdR3NLT0i93Jg\",\n        \"expires_at\": \"2024-03-22T21:51:11.810Z\"\n    }\n}"
+						},
+						{
+							"name": "🇩🇰 DKK Create a Mandate PDF",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "da"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mandate_pdfs\": {\n        \"scheme\": \"betalingsservice\",\n        \"account_holder_name\": \"{{$randomBankAccountName}}\",\n        \"account_number\": \"3179681\",\n        \"bank_code\": \"345\",\n        \"mandate_reference\": \"abc8364\",\n        \"danish_identity_number\": \"0101701234\",\n        \"signature_date\": \"2023-12-31\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/mandate_pdfs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"mandate_pdfs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 22 Mar 2024 21:41:28 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"04a2f20f15499457a4114b7259f6fc64\""
+								},
+								{
+									"key": "x-request-id",
+									"value": "23BF0AB49E60_0A1474321F92_65FDFB08_D6E80001"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31556926; includeSubDomains; preload"
+								},
+								{
+									"key": "vary",
+									"value": "Origin,Accept-Encoding"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "ratelimit-limit",
+									"value": "1600"
+								},
+								{
+									"key": "ratelimit-remaining",
+									"value": "1598"
+								},
+								{
+									"key": "ratelimit-reset",
+									"value": "Fri, 22 Mar 2024 21:42:00 GMT"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mandate_pdfs\": {\n        \"url\": \"https://mandate-previews-sandbox.gocardless.com/?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..7IjK006qC3miJpH6.UmvC9TIX8Z7BoNP4a9XIr-ix5B16ohSxVvJnKEghHHO6rQf5cOqKkrMAMeUixfp4PsxkjazdouBAFjZXwsQaFbi9yG9xqJWhfpuExkPvfe7Yog75BF1bXWPbBHOYKAp4sCMT9LgOwz_hs8Jy2QOGbWylNSQZkeNQtFRuQ2BA91TdEQrlKwTEHkP42x3n-pDeoxMu0zIoOH2n9W4CJdqBEEOAtN9GFe8eNWuuLD9fWivBsk0odZMKXr84IH04zmqvhwAImXZZUJztgM160F2ILkRgIPxZtUaJvONqxoWD9hSWIqwdWgUbAtxrN_q9GagYPWPNlNlJVhtfxIgv4F2XSxZ5OM_ISQ44kIA4wyHZgj4eKT8D7FMq0q0Oo-HlLsV1tp1-vmpowLTZcvdhqRv5UkTM6QnLp-flZya7vBSd03NPtTE1gcmV1QoFovRerEfcU3ZQ0i7Fhvq-VwxheTtytj7lqKbQh8JkvWyBLSbidgIcAb0oDkcOt4jJ15LCCtZ96N4IUnKAJ9gx5UzIz_L6GvpiuuQQ30B4Bpj8eeONo63HQbPIA6HOCdEfH3WCsQ7LFqxq7PYl1zWkya8AL28bvYMnVAo7YiWlooqXcef_rLdkYoNRFAVadaIPjX9xeVI8WYpcINX8ccY5DujfyjczCnbw2nJqI8CCWSWNkGeFNLOCUUaV2eCwN-2cQMYGL1E7mERb7b8XlSdxdIZPGR1V0C_RNZL5myNFbyLeHj3Mupc-aHwTviwyIhsgkUgX8vSw4suSLqWw23RT4K96hE5ZM05pNl-hjSHqlyqGDdAEt9m9flO4iBWUs31Mho1ThwMzq8DwK2J7nHLCYkBiMBqswnpvWkOY6gsCjSGlEUscU3HRaOfYvJ33Z8kWk5WCLGmLIYhLd3lnPS2W_g9_G1a8038Fv8cpvg19rhYlPqgHjRLcuX9covih7TqAtaMZNLfCazIWsw0k_Fqn6cxVJP_aMXoUeYXCiPlTWpWpHAeBGimJvymliQ8b4bpIaq7_fAVblPUmCI2AwVz64ahRy0VV7m2sdF9YwlSyKSMZ6vRndLwthztKF_CSREGAfEGIcXf4uNOAzRkF8TRLEoTsv7a0GwkjmOXheGpMOBpolcT7fw12oGF0E5JcNBObQfmMDIzkELriuguYbo2XlEI7WukqSrj2_O7AXz2OE32FpsaHaAW5XWAGViisnV7vlROukihHstygOtv3XtCg0W9d0P7oXbgjZkeI0qqbpjN6OAwoODwnHGErNBf-mVChVPiPnpLlm_93kzomiqb7KXM7sz8iFdwhRIq5lGCgpm05z3SgOYOUWd02MS6eTEmo8wgRemgG2iVAMelCNuGk85-H11nE0D7voFJK3QPJnw4pZZn6j_JqFZsf9J__bfIci40uWfcnrnRU_zJ4VH1_AIZJ8hfmkNK58wJNg0XYIx9bhQ.h72KEHagSCxKaGNhjyZOxg\",\n        \"expires_at\": \"2024-03-22T21:51:28.960Z\"\n    }\n}"
+						},
+						{
+							"name": "🇸🇪 SEK Create a Mandate PDF",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"value": "sv"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mandate_pdfs\": {\n        \"scheme\": \"autogiro\",\n        \"account_holder_name\": \"{{$randomBankAccountName}}\",\n        \"account_number\": \"0000003\",\n        \"branch_code\": \"5491\",\n        \"mandate_reference\": \"abc8364\",\n        \"swedish_identity_number\": \"198112289874\",\n        \"signature_date\": \"2023-12-31\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/mandate_pdfs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"mandate_pdfs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 22 Mar 2024 21:41:47 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"660146cea268e1bdc5c9605d84c3c604\""
+								},
+								{
+									"key": "x-request-id",
+									"value": "23BF0ABAB6D4_0A146BFB1F92_65FDFB1B_D79F0001"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31556926; includeSubDomains; preload"
+								},
+								{
+									"key": "vary",
+									"value": "Origin,Accept-Encoding"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "ratelimit-limit",
+									"value": "1600"
+								},
+								{
+									"key": "ratelimit-remaining",
+									"value": "1597"
+								},
+								{
+									"key": "ratelimit-reset",
+									"value": "Fri, 22 Mar 2024 21:42:00 GMT"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"mandate_pdfs\": {\n        \"url\": \"https://mandate-previews-sandbox.gocardless.com/?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..OriakeKjvnImJ5_P.r77ZWd9QnikAUA97OpjocecxW5vtztm1ktUURDWfWBjBeflYCELWX_J5YxEZDBmJkn2pK5PvDuaZxO1m5AewjrX0OVfWrSwQd_tnpdYR3xbH80aGeRUp449YFWtJmO3L6xRHtbA13YBTgT6ZesinEbpA_9MoLaDTvxltlWaUgyjkJcRedq8smLv1WH7Jwfg-63hLg1rIq4vkBpSRa9RS2rqaNKBLDGwtkY9OjzV-EThNDMFr5ZY04J0VAl2yqY2fX3XSU_Xk_af9b4fS2lZBrJEZQrYXiymze4bDZAXu8joNC73pI34PtntFb0nque9CGhHlZgGfrxYcbc5OhpsvKnyblwxpctIy5K0Z7Zt3nt1F3F1azgtEbCDfztsI0W9olagj20jRuaVPQne3GveXGxtIEW0xEW3tqdrtncYLYehkb9xCr00eusm4GLa_oY0n9-WgDWs1u5hdSIdorFrFlYI1Cpy7bMSqyiwI6zefV88lcLl_GMszPMtRQVKmI0qI01lqfPWZHvGY7MHcD-pWHD9m_aGp2jtPMC94T6bTDrx4F6gCGaSRG-hcy-yaUwHkgVe3DbkCYvOGye3X4nacIZESmYKkd6syKQIaa0HWdCnd_1XLDuWH67U2bq1MMVGsKnC7h5tyIKNzu7JVSl1Mq179IjRTBQdNfcV3TUka0xd0DXm7mD8s_uQxJBu8Hr-Sf2jeXYU45uo_iTB-36y2JllBk96pXFqBIKZytU89h4fWP-aOKUxcCuUBjOkN-8PXNptAe3b0EH5V4aHGXbAhG29apJ_KDF4SL8dL6kQrpFv3d2eqpsX5CTKWEJ3G-Prl0JyQ41epEJZcqK-IKbqTVhcyBPtGI4-zygKXObANZc03mkvOxfxY-YDRtC5VvpiA5BC9uTDftjOGKSML_UUoLsilYmbvFj9u8_eagxUPsITVbVHwUYKhLFVVW1TIwqdiSOW1lf0k5h2d40YP5sy__TRnpBVwXXFL5NJIKrW5hNQQqMjLZVJsaZviR3WiRdvUoi4xeliNSeAJKeBKjPJp1fptWjLNV81VI4S2TGYJ8O3xQclLPVJV74q50AG7qFuo-YhXi4MBp_zCCnooM7ZBUJoG3LC1cvu-apfN-cVUwQKtZI0H-GP40ZCqng9bgcRFkuvzZ2PlVYWV743E8C8DQDqv8daA_N-5fC26ggq0xjDzDjq8Gpw6KRbPBfvrLto1aEGxADkRInOjfKayCVYWcUGYPzKLwHSQdrAvFBY0AZo52TPyEh39TgvLisBfHcQIR8rwdfSGe9CB1StBvC0rIVJS7hRGpAaC9AnTZ98IlJ2hnBE4qbxRDj5TxW6J0-SFiZZjYUXTzqaIwNiDBBamfZFPG6uscOM_Hb0VMVIBryYPRNZd-b0WWVB2U_jYZraSxXsOURIR3bf1PLH_9UQzZvoNzg0qyI6U3x2o-fgctkgRHj1vD8Bz8Z8ThXIvbJvzgQVXwDaxRqifknn6i0GblCYbK4POGDayyj608Ld-4oAj3uDQh-Ry5A2IRElP5K9BD0KEqk4HA-aJ.ExIEVrt50s4KGFLUGEa2Pg\",\n        \"expires_at\": \"2024-03-22T21:51:47.580Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Bank Details Lookup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bank_details_lookups\": {\n        \"account_number\": \"55779911\",\n        \"branch_code\": \"200000\",\n        //\"bank_code\": \"026073150\",\n        //\"account_type\": \"checking\",\n        //\"iban\": \"GB60 BARC 2000 0055 7799 11\"\n        \"country_code\": \"GB\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/bank_details_lookups",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bank_details_lookups"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Look up the name and reachability of a bank account.\n\n*Note: bank accounts can be created with local or international bank details. You can find the different local bank detail formats, and how they should be used with the GoCardless API [here.](https://developer.gocardless.com/api-reference/#appendix-local-bank-details)*\n\n[Bank Details Lookup API Docs](https://developer.gocardless.com/api-reference/#bank-details-lookups-perform-a-bank-details-lookup)"
+					},
+					"response": [
+						{
+							"name": "Bank Details Lookup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"bank_details_lookups\": {\n        \"account_number\": \"55779911\",\n        \"branch_code\": \"200000\",\n        //\"bank_code\": \"026073150\",\n        //\"account_type\": \"checking\",\n        //\"iban\": \"GB60 BARC 2000 0055 7799 11\"\n        \"country_code\": \"GB\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/bank_details_lookups",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"bank_details_lookups"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 22 Mar 2024 14:38:20 GMT"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"dd6a47986d2a04f9316624a29a423e9d\""
+								},
+								{
+									"key": "x-request-id",
+									"value": "23BF10AAD696_0A147A3E1F92_65FD97D0_08270001"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31556926; includeSubDomains; preload"
+								},
+								{
+									"key": "vary",
+									"value": "Origin,Accept-Encoding"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "ratelimit-limit",
+									"value": "1600"
+								},
+								{
+									"key": "ratelimit-remaining",
+									"value": "1599"
+								},
+								{
+									"key": "ratelimit-reset",
+									"value": "Fri, 22 Mar 2024 14:39:00 GMT"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"bank_details_lookups\": {\n        \"bank_name\": \"BARCLAYS BANK PLC\",\n        \"available_debit_schemes\": [\n            \"bacs\"\n        ],\n        \"bic\": \"BUKBGB22XXX\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Healthcheck",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/health_check",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"health_check"
+							]
+						},
+						"description": "We expose a health check endpoint which can be used to test connections to our API. Requests to this endpoint do not require authorization and are not rate limited. This endpoint will return a `200` response while our API is available.\n\n*   `https://api.gocardless.com/health_check` for live\n*   `https://api-sandbox.gocardless.com/health_check` for sandbox\n    \n\n[Health check API Docs](https://developer.gocardless.com/api-reference/#helper-endpoints-healthcheck)"
+					},
+					"response": [
+						{
+							"name": "Healthcheck",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/health_check",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"health_check"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 22 Mar 2024 20:24:41 GMT"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"33aab917b287f60a5b62567145920dcd\""
+								},
+								{
+									"key": "cache-control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "x-request-id",
+									"value": "23BF0031CF90_0A1474321F92_65FDE8FD_7CD90001"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31556926; includeSubDomains; preload"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 google"
+								},
+								{
+									"key": "Alt-Svc",
+									"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+								}
+							],
+							"cookie": [],
+							"body": "{\"active_record\":\"up\",\"system\":\"up\"}"
+						}
+					]
+				}
+			],
+			"description": "**Healthcheck**: We expose a health check endpoint which can be used to test connections to our API. Requests to this endpoint do not require authorization and are not rate limited. This endpoint will return a `200` response while our API is available.\n\n**Mandate PDF:** Generates a PDF mandate and returns its temporary URL.\n\n**Bank Details Lookup:** Look up the name and reachability of a bank account."
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"/**",
+					" * Adds required GoCardless headers to all API calls ",
+					" */",
+					"pm.request.headers.add({",
+					"  key: \"GoCardless-Version\",",
+					"  value: \"2015-07-06\"",
+					"});",
+					"pm.request.headers.add({",
+					"    key: \"Content-Type\",",
+					"    value: \"application/json\"",
+					"});",
+					"",
+					"/**",
+					" * Generated variables",
+					" */",
+					"pm.globals.set(\"generated_payment_amount\", _.random(100, 100000));",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test('Check Status', () => {",
+					"    if(pm.response.code >= 200 && pm.response.code <= 299) {",
+					"        console.log(\"🟢\" + pm.response.code);",
+					"    }",
+					"})"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://api-sandbox.gocardless.com"
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
