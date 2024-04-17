@@ -1,7 +1,24 @@
 const POSTMAN_FILE_EXTENSION = '.postman_collection.json';
-let variableSeen = false;
 
-function processItem(collectionName, items) {
+function createVariableObject(varArray) {
+    let obj = {};
+
+    for (let o in varArray) {
+        const { key, value } = varArray[o];
+        obj[key] = value;
+    }
+
+    return obj;
+}
+
+function replaceVariables(inputString, data) {
+    const regex = /\{\{(\w+)\}\}/g;
+    return inputString.replace(regex, (_, variableName) => {
+      return data[variableName] || ""; // Replace with an empty string if the variable is not found
+    });
+}
+
+function processItem(collectionName, items, varObj) {
     /*
     * Items are a nested structure
     * See https://schema.postman.com/collection/json/v2.1.0/draft-07/collection.json
@@ -17,20 +34,20 @@ function processItem(collectionName, items) {
         if (!item?.request) {
             // This is an item-group, iterate
             console.log('Item Group!', item.item);
-            endpointArray = endpointArray.concat(processItem(collectionName, item.item));
+            endpointArray = endpointArray.concat(processItem(collectionName, item.item, varObj));
         }
         else {
             console.log('Item!', item);
             const endpointId = crypto.randomUUID();
             const endpointName = item.name;
             const endpointMethod = item.request.method;
-            const endpointURL = item.request.url.raw;
+            let endpointURL = item.request.url.raw;
 
             // Variables are denoted like so, {{var}}
             if (endpointURL.includes('{{'))
             {
                 console.log(`Variable seen in endpoint, ${endpointName}`);
-                variableSeen = true;
+                endpointURL = replaceVariables(endpointURL, varObj);
             }
 
             const endpoint =
@@ -63,12 +80,13 @@ function readPostmanFile(file) {
             return;
         }
 
-        variableSeen = false;
         const data = JSON.parse(event.target.result);
         const collectionName = data.info.name;
+        const varObj = createVariableObject(data.variable);
 
         console.log(`Collection: ${collectionName}`);
         console.log('Data:', data);
+        console.log('varObj:', varObj);
 
         const exportData =
         {
@@ -78,9 +96,7 @@ function readPostmanFile(file) {
         };
 
         console.log('Data.item:', data.item);
-        exportData.endpoints = processItem(collectionName, data.item);
-
-        //todo: handle global vars
+        exportData.endpoints = processItem(collectionName, data.item, varObj);
 
         if (exportData.endpoints.length === 0) {
             console.log('No endpoints detected. Is your collection v2.1.0?');
